@@ -97,11 +97,14 @@ int main(int argc, char *argv[])
        
    fromlen = sizeof(struct sockaddr_in);
    
+   printf("Server started with port %s\n", argv[1]);
+   
    //Continuesly run and accept commands.
    while (1) {
         memset(&buf, 0, sizeof(buf));
         
         //Recieve data from client
+		puts("Waiting for client...\n");
         n = recvfrom(sock,buf,1024,0,(struct sockaddr *)&from,&fromlen);
         if (n < 0) error("recvfrom");
        

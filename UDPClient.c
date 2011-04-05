@@ -17,7 +17,6 @@ int main(int argc, char *argv[])
     int sock, n;
     unsigned int length;
     struct sockaddr_in server, from;    //Defined in netinet/in.h
-    //struct hostent *hp;
     char buffer[buffersize+1];
 
     ///////////////////////////////////////////////
@@ -42,12 +41,6 @@ int main(int argc, char *argv[])
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = inet_addr(argv[1]);
     server.sin_port = htons(atoi(argv[2]));
-    //server.sin_addr.s_addr = inet_addr("127.0.0.1");
-    //server.sin_port = htons(9001);
-
-   //hp = gethostbyname(argv[1]);
-   //if (hp==0) error("Unknown host");
-   //bcopy((char *)hp->h_addr, (char *)&server.sin_addr, hp->h_length);
 
     length=sizeof(struct sockaddr_in);
 
@@ -75,7 +68,7 @@ int main(int argc, char *argv[])
 
     ///////////////////////////////////////////
     //Print to display the recieved data.
-    write(1,"Message recieved: ",17);
+    write(1,"Message recieved: ",17); // 1 = stdout
     write(1,buffer,n);
     putchar('\n');
 
