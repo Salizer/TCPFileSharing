@@ -36,7 +36,7 @@ begin
 		a1000:		entity work.BinaryDecoder port map(V => lim_al_hour_10, HEX0 => h10a);
 		
 		w: entity work.watch port map(CLK => CLK, SPEED => SPEED, RESET => RESET, SEG1 => s1, SEG10 => s10, SEG100 => m1, 
-		SEG1000 => m10, SEG10000 => h1, SEG100000 => h10, BIN_VAL(23 downto 8) => bin_val);
+		SEG1000 => m10, SEG10000 => h1, SEG100000 => h10, BIN_VAL => bin_val);
 		
 		ALARM <= '1' when bin_val = lim_al_hour_10 & lim_al_hour_1 & lim_al_min_10 & lim_al_min_1 else '0';
 		

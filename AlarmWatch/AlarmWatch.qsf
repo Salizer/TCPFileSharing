@@ -49,6 +49,74 @@ set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
 set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
-set_global_assignment -name VHDL_FILE "../../../Users/Sam Luu Tong/Desktop/IHA - E2/E2VDLA - VHDL/VDLA-øvelserne 2-4/FilerLol/Exercise 4 - 2/BinaryDecoder.vhd"
-set_global_assignment -name VHDL_FILE AlarmWatch/AlarmWatch.vhd
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_location_assignment PIN_P1 -to AL_HOUR1[3]
+set_location_assignment PIN_N1 -to AL_HOUR1[2]
+set_location_assignment PIN_A13 -to AL_HOUR1[1]
+set_location_assignment PIN_B13 -to AL_HOUR1[0]
+set_location_assignment PIN_U4 -to AL_HOUR10[3]
+set_location_assignment PIN_U3 -to AL_HOUR10[2]
+set_location_assignment PIN_T7 -to AL_HOUR10[1]
+set_location_assignment PIN_P2 -to AL_HOUR10[0]
+set_location_assignment PIN_AE14 -to AL_MIN_1[3]
+set_location_assignment PIN_P25 -to AL_MIN_1[2]
+set_location_assignment PIN_N26 -to AL_MIN_1[1]
+set_location_assignment PIN_N25 -to AL_MIN_1[0]
+set_location_assignment PIN_C13 -to AL_MIN_10[3]
+set_location_assignment PIN_AC13 -to AL_MIN_10[2]
+set_location_assignment PIN_AD13 -to AL_MIN_10[1]
+set_location_assignment PIN_AF14 -to AL_MIN_10[0]
+set_location_assignment PIN_AE23 -to ALARM
+set_location_assignment PIN_N2 -to CLK
+set_location_assignment PIN_W26 -to RESET
+set_location_assignment PIN_Y24 -to SEG1[6]
+set_location_assignment PIN_AB25 -to SEG1[5]
+set_location_assignment PIN_AB26 -to SEG1[4]
+set_location_assignment PIN_AC26 -to SEG1[3]
+set_location_assignment PIN_AC25 -to SEG1[2]
+set_location_assignment PIN_V22 -to SEG1[1]
+set_location_assignment PIN_AB23 -to SEG1[0]
+set_location_assignment PIN_W24 -to SEG10[6]
+set_location_assignment PIN_U22 -to SEG10[5]
+set_location_assignment PIN_Y25 -to SEG10[4]
+set_location_assignment PIN_Y26 -to SEG10[3]
+set_location_assignment PIN_AA26 -to SEG10[2]
+set_location_assignment PIN_AA25 -to SEG10[1]
+set_location_assignment PIN_Y23 -to SEG10[0]
+set_location_assignment PIN_T3 -to SEG100[6]
+set_location_assignment PIN_R6 -to SEG100[5]
+set_location_assignment PIN_R7 -to SEG100[4]
+set_location_assignment PIN_T4 -to SEG100[3]
+set_location_assignment PIN_U2 -to SEG100[2]
+set_location_assignment PIN_U1 -to SEG100[1]
+set_location_assignment PIN_U9 -to SEG100[0]
+set_location_assignment PIN_R3 -to SEG1000[6]
+set_location_assignment PIN_R4 -to SEG1000[5]
+set_location_assignment PIN_R5 -to SEG1000[4]
+set_location_assignment PIN_T9 -to SEG1000[3]
+set_location_assignment PIN_P7 -to SEG1000[2]
+set_location_assignment PIN_P6 -to SEG1000[1]
+set_location_assignment PIN_T2 -to SEG1000[0]
+set_location_assignment PIN_M4 -to SEG10000[6]
+set_location_assignment PIN_M5 -to SEG10000[5]
+set_location_assignment PIN_M3 -to SEG10000[4]
+set_location_assignment PIN_M2 -to SEG10000[3]
+set_location_assignment PIN_P3 -to SEG10000[2]
+set_location_assignment PIN_P4 -to SEG10000[1]
+set_location_assignment PIN_R2 -to SEG10000[0]
+set_location_assignment PIN_N9 -to SEG100000[6]
+set_location_assignment PIN_P9 -to SEG100000[5]
+set_location_assignment PIN_L7 -to SEG100000[4]
+set_location_assignment PIN_L6 -to SEG100000[3]
+set_location_assignment PIN_L9 -to SEG100000[2]
+set_location_assignment PIN_L2 -to SEG100000[1]
+set_location_assignment PIN_L3 -to SEG100000[0]
+set_location_assignment PIN_G26 -to SPEED
+set_location_assignment PIN_V2 -to VIEW
+set_global_assignment -name MISC_FILE "C:/Users/Salizer/Documents/IHA/2 Semester/E2VDLA/Projects/AlarmWatch/AlarmWatch.dpf"
+set_global_assignment -name VHDL_FILE watch.vhd
+set_global_assignment -name VHDL_FILE "../Exercise 6 - 1/multiCounter.vhd"
+set_global_assignment -name VHDL_FILE "../Exercise 6 - 2/clockGen.vhd"
+set_global_assignment -name VHDL_FILE AlarmWatch.vhd
+set_global_assignment -name VHDL_FILE ../UsefullEntities/BinaryDecoder.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for AlarmWatch
-Sun Apr 03 17:43:23 2011
+Tue Apr 05 09:16:47 2011
 Quartus II Version 9.1 Build 222 10/21/2009 SJ Full Version
 
 
@@ -10,7 +10,21 @@ Quartus II Version 9.1 Build 222 10/21/2009 SJ Full Version
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Port Connectivity Checks: "watch:w|multiCounter:counterH10"
+ 12. Port Connectivity Checks: "watch:w|multiCounter:counterH1"
+ 13. Port Connectivity Checks: "watch:w|multiCounter:counterM10"
+ 14. Port Connectivity Checks: "watch:w|multiCounter:counterM1"
+ 15. Port Connectivity Checks: "watch:w|multiCounter:counterS10"
+ 16. Port Connectivity Checks: "watch:w|multiCounter:counterS1"
+ 17. Port Connectivity Checks: "watch:w"
+ 18. Port Connectivity Checks: "BinaryDecoder:a0"
+ 19. Analysis & Synthesis Messages
 
 
 
@@ -36,20 +50,20 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +------------------------------------+------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Sun Apr 03 17:43:23 2011        ;
+; Analysis & Synthesis Status        ; Successful - Tue Apr 05 09:16:47 2011    ;
 ; Quartus II Version                 ; 9.1 Build 222 10/21/2009 SJ Full Version ;
 ; Revision Name                      ; AlarmWatch                               ;
 ; Top-level Entity Name              ; AlarmWatch                               ;
 ; Family                             ; Cyclone II                               ;
-; Total logic elements               ; N/A until Partition Merge                ;
-;     Total combinational functions  ; N/A until Partition Merge                ;
-;     Dedicated logic registers      ; N/A until Partition Merge                ;
-; Total registers                    ; N/A until Partition Merge                ;
-; Total pins                         ; N/A until Partition Merge                ;
-; Total virtual pins                 ; N/A until Partition Merge                ;
-; Total memory bits                  ; N/A until Partition Merge                ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                ;
-; Total PLLs                         ; N/A until Partition Merge                ;
+; Total logic elements               ; 215                                      ;
+;     Total combinational functions  ; 215                                      ;
+;     Dedicated logic registers      ; 58                                       ;
+; Total registers                    ; 58                                       ;
+; Total pins                         ; 63                                       ;
+; Total virtual pins                 ; 0                                        ;
+; Total memory bits                  ; 0                                        ;
+; Embedded Multiplier 9-bit elements ; 0                                        ;
+; Total PLLs                         ; 0                                        ;
 +------------------------------------+------------------------------------------+
 
 
@@ -149,26 +163,248 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                 ;
++--------------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------+
+; File Name with User-Entered Path     ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                ;
++--------------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------+
+; watch.vhd                            ; yes             ; User VHDL File  ; C:/Users/Salizer/Documents/IHA/2 Semester/E2VDLA/Projects/AlarmWatch/watch.vhd              ;
+; ../Exercise 6 - 1/multiCounter.vhd   ; yes             ; User VHDL File  ; C:/Users/Salizer/Documents/IHA/2 Semester/E2VDLA/Projects/Exercise 6 - 1/multiCounter.vhd   ;
+; ../Exercise 6 - 2/clockGen.vhd       ; yes             ; User VHDL File  ; C:/Users/Salizer/Documents/IHA/2 Semester/E2VDLA/Projects/Exercise 6 - 2/clockGen.vhd       ;
+; AlarmWatch.vhd                       ; yes             ; User VHDL File  ; C:/Users/Salizer/Documents/IHA/2 Semester/E2VDLA/Projects/AlarmWatch/AlarmWatch.vhd         ;
+; ../UsefullEntities/BinaryDecoder.vhd ; yes             ; User VHDL File  ; C:/Users/Salizer/Documents/IHA/2 Semester/E2VDLA/Projects/UsefullEntities/BinaryDecoder.vhd ;
++--------------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Estimated Total logic elements              ; 215   ;
+;                                             ;       ;
+; Total combinational functions               ; 215   ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 135   ;
+;     -- 3 input functions                    ; 34    ;
+;     -- <=2 input functions                  ; 46    ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 184   ;
+;     -- arithmetic mode                      ; 31    ;
+;                                             ;       ;
+; Total registers                             ; 58    ;
+;     -- Dedicated logic registers            ; 58    ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 63    ;
+; Maximum fan-out node                        ; VIEW  ;
+; Maximum fan-out                             ; 53    ;
+; Total fan-out                               ; 949   ;
+; Average fan-out                             ; 2.82  ;
++---------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                               ;
++-----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node        ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                ; Library Name ;
++-----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------+--------------+
+; |AlarmWatch                       ; 215 (74)          ; 58 (0)       ; 0           ; 0            ; 0       ; 0         ; 63   ; 0            ; |AlarmWatch                                                        ; work         ;
+;    |BinaryDecoder:a100|           ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AlarmWatch|BinaryDecoder:a100                                     ;              ;
+;    |BinaryDecoder:a1|             ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AlarmWatch|BinaryDecoder:a1                                       ;              ;
+;    |watch:w|                      ; 133 (2)           ; 58 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AlarmWatch|watch:w                                                ;              ;
+;       |clockGen:clocker|          ; 82 (82)           ; 33 (33)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AlarmWatch|watch:w|clockGen:clocker                               ;              ;
+;       |multiCounter:counterH10|   ; 2 (2)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AlarmWatch|watch:w|multiCounter:counterH10                        ;              ;
+;       |multiCounter:counterH1|    ; 9 (5)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AlarmWatch|watch:w|multiCounter:counterH1                         ;              ;
+;          |BinaryDecoder:binToSeg| ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AlarmWatch|watch:w|multiCounter:counterH1|BinaryDecoder:binToSeg  ;              ;
+;       |multiCounter:counterM10|   ; 4 (4)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AlarmWatch|watch:w|multiCounter:counterM10                        ;              ;
+;       |multiCounter:counterM1|    ; 9 (5)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AlarmWatch|watch:w|multiCounter:counterM1                         ;              ;
+;          |BinaryDecoder:binToSeg| ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AlarmWatch|watch:w|multiCounter:counterM1|BinaryDecoder:binToSeg  ;              ;
+;       |multiCounter:counterS10|   ; 10 (4)            ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AlarmWatch|watch:w|multiCounter:counterS10                        ;              ;
+;          |BinaryDecoder:binToSeg| ; 6 (6)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AlarmWatch|watch:w|multiCounter:counterS10|BinaryDecoder:binToSeg ;              ;
+;       |multiCounter:counterS1|    ; 15 (5)            ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AlarmWatch|watch:w|multiCounter:counterS1                         ;              ;
+;          |BinaryDecoder:binToSeg| ; 10 (10)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |AlarmWatch|watch:w|multiCounter:counterS1|BinaryDecoder:binToSeg  ;              ;
++-----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                          ;
++----------------------------------------------------+----------------------------------------+
+; Register name                                      ; Reason for Removal                     ;
++----------------------------------------------------+----------------------------------------+
+; watch:w|multiCounter:counterH10|currentValue[2..3] ; Stuck at GND due to stuck port data_in ;
+; watch:w|multiCounter:counterS10|currentValue[3]    ; Stuck at GND due to stuck port data_in ;
+; watch:w|multiCounter:counterM10|currentValue[3]    ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 4              ;                                        ;
++----------------------------------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 58    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 52    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 6     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
+; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |AlarmWatch|watch:w|clockGen:clocker|cycles[22] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |AlarmWatch|watch:w|clockGen:clocker|cycles[31] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |AlarmWatch|lim_al_hour_1[1]                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "watch:w|multiCounter:counterH10"                                                    ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; mode ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; cout ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------+
+; Port Connectivity Checks: "watch:w|multiCounter:counterH1" ;
++------+-------+----------+----------------------------------+
+; Port ; Type  ; Severity ; Details                          ;
++------+-------+----------+----------------------------------+
+; mode ; Input ; Info     ; Stuck at GND                     ;
++------+-------+----------+----------------------------------+
+
+
++-------------------------------------------------------------+
+; Port Connectivity Checks: "watch:w|multiCounter:counterM10" ;
++---------+-------+----------+--------------------------------+
+; Port    ; Type  ; Severity ; Details                        ;
++---------+-------+----------+--------------------------------+
+; mode[1] ; Input ; Info     ; Stuck at GND                   ;
+; mode[0] ; Input ; Info     ; Stuck at VCC                   ;
++---------+-------+----------+--------------------------------+
+
+
++------------------------------------------------------------+
+; Port Connectivity Checks: "watch:w|multiCounter:counterM1" ;
++------+-------+----------+----------------------------------+
+; Port ; Type  ; Severity ; Details                          ;
++------+-------+----------+----------------------------------+
+; mode ; Input ; Info     ; Stuck at GND                     ;
++------+-------+----------+----------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "watch:w|multiCounter:counterS10"                                                       ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; mode[1] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; mode[0] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; bin_val ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "watch:w|multiCounter:counterS1"                                                        ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; mode    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; bin_val ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "watch:w"                                                                            ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; cout ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------+
+; Port Connectivity Checks: "BinaryDecoder:a0" ;
++------+-------+----------+--------------------+
+; Port ; Type  ; Severity ; Details            ;
++------+-------+----------+--------------------+
+; v    ; Input ; Info     ; Stuck at GND       ;
++------+-------+----------+--------------------+
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 9.1 Build 222 10/21/2009 SJ Full Version
-    Info: Processing started: Sun Apr 03 17:43:21 2011
+    Info: Processing started: Tue Apr 05 09:16:45 2011
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off AlarmWatch -c AlarmWatch
 Info: Parallel compilation is enabled and will use 2 of the 2 processors detected
-Info: Found 2 design units, including 1 entities, in source file /users/sam luu tong/desktop/iha - e2/e2vdla - vhdl/vdla-øvelserne 2-4/filerlol/exercise 4 - 2/binarydecoder.vhd
-    Info: Found design unit 1: BinaryDecoder-selection
-    Info: Found entity 1: BinaryDecoder
-Info: Found 2 design units, including 1 entities, in source file alarmwatch/alarmwatch.vhd
+Info: Found 2 design units, including 1 entities, in source file watch.vhd
+    Info: Found design unit 1: watch-watching
+    Info: Found entity 1: watch
+Info: Found 2 design units, including 1 entities, in source file /users/salizer/documents/iha/2 semester/e2vdla/projects/exercise 6 - 1/multicounter.vhd
+    Info: Found design unit 1: multiCounter-counting
+    Info: Found entity 1: multiCounter
+Info: Found 2 design units, including 1 entities, in source file /users/salizer/documents/iha/2 semester/e2vdla/projects/exercise 6 - 2/clockgen.vhd
+    Info: Found design unit 1: clockGen-clocking
+    Info: Found entity 1: clockGen
+Info: Found 2 design units, including 1 entities, in source file alarmwatch.vhd
     Info: Found design unit 1: AlarmWatch-Alarmering
     Info: Found entity 1: AlarmWatch
-Error (10481): VHDL Use Clause error at AlarmWatch.vhd(38): design library "work" does not contain primary unit "watch" File: c:/altera/91/quartus/AlarmWatch/AlarmWatch.vhd Line: 38
-Error: Quartus II Analysis & Synthesis was unsuccessful. 1 error, 0 warnings
-    Error: Peak virtual memory: 211 megabytes
-    Error: Processing ended: Sun Apr 03 17:43:23 2011
-    Error: Elapsed time: 00:00:02
-    Error: Total CPU time (on all processors): 00:00:03
+Info: Found 2 design units, including 1 entities, in source file /users/salizer/documents/iha/2 semester/e2vdla/projects/usefullentities/binarydecoder.vhd
+    Info: Found design unit 1: BinaryDecoder-selection
+    Info: Found entity 1: BinaryDecoder
+Info: Elaborating entity "AlarmWatch" for the top level hierarchy
+Warning (10492): VHDL Process Statement warning at AlarmWatch.vhd(47): signal "s0a" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at AlarmWatch.vhd(48): signal "s0a" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at AlarmWatch.vhd(49): signal "m1a" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at AlarmWatch.vhd(50): signal "m10a" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at AlarmWatch.vhd(51): signal "h1a" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at AlarmWatch.vhd(52): signal "h10a" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at AlarmWatch.vhd(54): signal "s1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at AlarmWatch.vhd(55): signal "s10" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at AlarmWatch.vhd(56): signal "m1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at AlarmWatch.vhd(57): signal "m10" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at AlarmWatch.vhd(58): signal "h1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at AlarmWatch.vhd(59): signal "h10" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info: Elaborating entity "BinaryDecoder" for hierarchy "BinaryDecoder:a0"
+Info: Elaborating entity "watch" for hierarchy "watch:w"
+Warning (10541): VHDL Signal Declaration warning at watch.vhd(8): used implicit default value for signal "COUT" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10492): VHDL Process Statement warning at watch.vhd(26): signal "RESET" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at watch.vhd(28): signal "logicBinVal1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at watch.vhd(28): signal "logicBinVal2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info: Elaborating entity "clockGen" for hierarchy "watch:w|clockGen:clocker"
+Warning (10492): VHDL Process Statement warning at clockGen.vhd(16): signal "RESET" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info: Elaborating entity "multiCounter" for hierarchy "watch:w|multiCounter:counterS1"
+Warning (10492): VHDL Process Statement warning at multiCounter.vhd(25): signal "MODE" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at multiCounter.vhd(31): signal "RESET" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning: Output pins are stuck at VCC or GND
+    Warning (13410): Pin "SEG100000[1]" is stuck at GND
+Critical Warning: Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register watch:w|clockGen:clocker|cycles[31] will power up to Low
+    Critical Warning (18010): Register watch:w|clockGen:clocker|cycles[0] will power up to Low
+Info: Implemented 279 device resources after synthesis - the final resource count might be different
+    Info: Implemented 20 input pins
+    Info: Implemented 43 output pins
+    Info: Implemented 216 logic cells
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 24 warnings
+    Info: Peak virtual memory: 236 megabytes
+    Info: Processing ended: Tue Apr 05 09:16:47 2011
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:03
 
 
