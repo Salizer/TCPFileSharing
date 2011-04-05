@@ -29,14 +29,14 @@ begin
 					 
 	lim_al_hour_10 <= std_logic_vector(AL_HOUR10) when AL_HOUR10 <= 2 else "0010";
 		
-		a0:			entity work.BinaryDecoder port map(V => "0000", seg => s0a);
-		a1:			entity work.BinaryDecoder port map(V => lim_al_min_1, seg => m1a);
-		a10:		entity work.BinaryDecoder port map(V => lim_al_min_10, seg => m10a);
-		a100:		entity work.BinaryDecoder port map(V => lim_al_hour_1, seg => h1a);
-		a1000:		entity work.BinaryDecoder port map(V => lim_al_hour_10, seg => h10a);
+		a0:			entity work.BinaryDecoder port map(V => "0000", HEX0 => s0a);
+		a1:			entity work.BinaryDecoder port map(V => lim_al_min_1, HEX0 => m1a);
+		a10:		entity work.BinaryDecoder port map(V => lim_al_min_10, HEX0 => m10a);
+		a100:		entity work.BinaryDecoder port map(V => lim_al_hour_1, HEX0 => h1a);
+		a1000:		entity work.BinaryDecoder port map(V => lim_al_hour_10, HEX0 => h10a);
 		
 		w: entity work.watch port map(CLK => CLK, SPEED => SPEED, RESET => RESET, SEG1 => s1, SEG10 => s10, SEG100 => m1, 
-		SEG1000 => m10, SEG10000 => h1, SEG100000 => h10, BIN_VAL(23 downto 8) => bin_val);
+		SEG1000 => m10, SEG10000 => h1, SEG100000 => h10, BIN_VAL => bin_val);
 		
 		ALARM <= '1' when bin_val = lim_al_hour_10 & lim_al_hour_1 & lim_al_min_10 & lim_al_min_1 else '0';
 		
