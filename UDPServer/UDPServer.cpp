@@ -19,6 +19,7 @@ UDPServer::UDPServer(int argPort)
     serverInfo.sin_family = AF_INET; // IPv4 protocol for adresses
     serverInfo.sin_addr.s_addr = htonl(INADDR_ANY); // Use any IP not just for one interface(Ex from exercise where we have an interface with IP 10.0.0.x)
     serverInfo.sin_port = port; // The port to be used
+    serverSocket = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
     bind(serverSocket, (sockaddr*) &serverInfo, sizeof(serverInfo)); // Set up socket with the info from 'serverInfo'
 
     // -Client
@@ -48,8 +49,7 @@ void UDPServer::waitForClient()
     puts("Waiting for client...");
 
     // -Waiting
-    while(received == -1)
-        received = recvfrom(serverSocket, buffer, BUFFSIZE, 0, (sockaddr*) &serverInfo, &lengthClient);
+    received = recvfrom(serverSocket, buffer, BUFFSIZE, 0, (sockaddr*) &serverInfo, &lengthClient);
 
     // -Info about who connected
     printf("Client with IP %s connected\n", currentConnection.sin_addr);
