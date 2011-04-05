@@ -1,0 +1,351 @@
+Quartus II
+Version 9.1 Build 222 10/21/2009 SJ Full Version
+11
+1000
+OFF
+OFF
+OFF
+ON
+ON
+ON
+FV_OFF
+Level2
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Library Paths --
+-- End Library Paths --
+-- Start VHDL Libraries --
+-- End VHDL Libraries --
+# entity
+BinaryDecoder
+# storage
+db|AlarmWatch.(1).cnf
+db|AlarmWatch.(1).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+|users|salizer|documents|iha|2 semester|e2vdla|projects|usefullentities|binarydecoder.vhd
+863029b45d3e2a731adca16667b9a983
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(v)
+3 downto 0
+PARAMETER_STRING
+USR
+ constraint(hex0)
+6 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+BinaryDecoder:a0
+BinaryDecoder:a1
+BinaryDecoder:a10
+BinaryDecoder:a100
+BinaryDecoder:a1000
+watch:w|multiCounter:counterS1|BinaryDecoder:binToSeg
+watch:w|multiCounter:counterS10|BinaryDecoder:binToSeg
+watch:w|multiCounter:counterM1|BinaryDecoder:binToSeg
+watch:w|multiCounter:counterM10|BinaryDecoder:binToSeg
+watch:w|multiCounter:counterH1|BinaryDecoder:binToSeg
+watch:w|multiCounter:counterH10|BinaryDecoder:binToSeg
+}
+# lmf
+|altera|91|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+clockGen
+# storage
+db|AlarmWatch.(3).cnf
+db|AlarmWatch.(3).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+|users|salizer|documents|iha|2 semester|e2vdla|projects|exercise 6 - 2|clockgen.vhd
+1199b35e94271120a324a98090e2b5
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# hierarchies {
+watch:w|clockGen:clocker
+}
+# lmf
+|altera|91|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+multiCounter
+# storage
+db|AlarmWatch.(4).cnf
+db|AlarmWatch.(4).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+|users|salizer|documents|iha|2 semester|e2vdla|projects|exercise 6 - 1|multicounter.vhd
+2589337bcd9a9282cc87c0a14bb114
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(mode)
+1 downto 0
+PARAMETER_STRING
+USR
+ constraint(seg)
+6 downto 0
+PARAMETER_STRING
+USR
+ constraint(bin_val)
+3 downto 0
+PARAMETER_STRING
+USR
+}
+# include_file {
+|users|salizer|documents|iha|2 semester|e2vdla|projects|usefullentities|binarydecoder.vhd
+863029b45d3e2a731adca16667b9a983
+}
+# hierarchies {
+watch:w|multiCounter:counterS1
+watch:w|multiCounter:counterS10
+watch:w|multiCounter:counterM1
+watch:w|multiCounter:counterM10
+watch:w|multiCounter:counterH1
+watch:w|multiCounter:counterH10
+}
+# lmf
+|altera|91|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+watch
+# storage
+db|AlarmWatch.(2).cnf
+db|AlarmWatch.(2).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+|users|salizer|documents|iha|2 semester|e2vdla|projects|exercise 6 - 2|watch.vhd
+1029a320e166039ed8ba5d4ddcef4e5
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(mode)
+1 downto 0
+PARAMETER_STRING
+USR
+ constraint(seg1)
+6 downto 0
+PARAMETER_STRING
+USR
+ constraint(seg10)
+6 downto 0
+PARAMETER_STRING
+USR
+ constraint(seg100)
+6 downto 0
+PARAMETER_STRING
+USR
+ constraint(seg1000)
+6 downto 0
+PARAMETER_STRING
+USR
+ constraint(seg10000)
+6 downto 0
+PARAMETER_STRING
+USR
+ constraint(seg100000)
+6 downto 0
+PARAMETER_STRING
+USR
+ constraint(bin_val)
+3 downto 0
+PARAMETER_STRING
+USR
+}
+# include_file {
+|users|salizer|documents|iha|2 semester|e2vdla|projects|exercise 6 - 1|multicounter.vhd
+2589337bcd9a9282cc87c0a14bb114
+|users|salizer|documents|iha|2 semester|e2vdla|projects|usefullentities|binarydecoder.vhd
+863029b45d3e2a731adca16667b9a983
+|users|salizer|documents|iha|2 semester|e2vdla|projects|exercise 6 - 2|clockgen.vhd
+1199b35e94271120a324a98090e2b5
+}
+# lmf
+|altera|91|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+AlarmWatch
+# storage
+db|AlarmWatch.(0).cnf
+db|AlarmWatch.(0).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+alarmwatch.vhd
+493eee81f77f9b4023ba714cd69d
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# include_file {
+watch.vhd
+3661e5e8bb571ba34fe8a08b28565
+|users|salizer|documents|iha|2 semester|e2vdla|projects|exercise 6 - 2|clockgen.vhd
+1199b35e94271120a324a98090e2b5
+|users|salizer|documents|iha|2 semester|e2vdla|projects|exercise 6 - 1|multicounter.vhd
+2589337bcd9a9282cc87c0a14bb114
+|users|salizer|documents|iha|2 semester|e2vdla|projects|usefullentities|binarydecoder.vhd
+863029b45d3e2a731adca16667b9a983
+}
+# hierarchies {
+|
+}
+# lmf
+|altera|91|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+watch
+# storage
+db|AlarmWatch.(5).cnf
+db|AlarmWatch.(5).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+watch.vhd
+3661e5e8bb571ba34fe8a08b28565
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(seg1)
+6 downto 0
+PARAMETER_STRING
+USR
+ constraint(seg10)
+6 downto 0
+PARAMETER_STRING
+USR
+ constraint(seg100)
+6 downto 0
+PARAMETER_STRING
+USR
+ constraint(seg1000)
+6 downto 0
+PARAMETER_STRING
+USR
+ constraint(seg10000)
+6 downto 0
+PARAMETER_STRING
+USR
+ constraint(seg100000)
+6 downto 0
+PARAMETER_STRING
+USR
+ constraint(bin_val)
+15 downto 0
+PARAMETER_STRING
+USR
+}
+# include_file {
+|users|salizer|documents|iha|2 semester|e2vdla|projects|exercise 6 - 2|clockgen.vhd
+1199b35e94271120a324a98090e2b5
+|users|salizer|documents|iha|2 semester|e2vdla|projects|exercise 6 - 1|multicounter.vhd
+2589337bcd9a9282cc87c0a14bb114
+|users|salizer|documents|iha|2 semester|e2vdla|projects|usefullentities|binarydecoder.vhd
+863029b45d3e2a731adca16667b9a983
+}
+# hierarchies {
+watch:w
+}
+# lmf
+|altera|91|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# complete
+
