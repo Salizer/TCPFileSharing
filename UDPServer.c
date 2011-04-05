@@ -17,7 +17,7 @@ void error(const char *msg)
 char *getUpTime()
 {
  FILE * uptimefile;
- char uptime_chr[28];
+ char uptime_chr[28]; // 28 ud fra eksemplet
  long uptime = 0;
 
  if((uptimefile = fopen("/proc/uptime", "r")) == NULL)
@@ -56,6 +56,7 @@ char* getLoadAvg()
     return(strdup(loadAvg_chr));
 }
 
+// Main
 int main(int argc, char *argv[])
 {
     /////////////////////////////////////////////
@@ -90,7 +91,7 @@ int main(int argc, char *argv[])
    server.sin_port=htons(atoi(argv[1]));
    
    ///////////////////////////////////////////////
-   //The bind() system call binds a socket to an address (address of the current host and port number).
+   //The bind() system calls binds a socket to an address (address of the current host and port number).
    if (bind(sock,(struct sockaddr *)&server,length)<0) 
        error("binding");
        
@@ -106,10 +107,10 @@ int main(int argc, char *argv[])
        
        //Write what was recieved.
        write(1,"Received a datagram: ",21);
-       write(1,buf,n);
+       write(1,buf,n); 
        
        char* tmpBuf;
-       // Send data back if U
+       // Send data back if ASCII 'u' or 'U'
        if(*buf == 'u' || *buf == 'U')
        {
             memset(&buf, 0, sizeof(buf));
@@ -117,12 +118,12 @@ int main(int argc, char *argv[])
             
             strcpy(buf, tmpBuf);
             
-            n = sendto(sock,buf,strlen(buf) + 1,0,(struct sockaddr *)&from,fromlen);
+            n = sendto(sock,buf,strlen(buf) + 1,0,(struct sockaddr *)&from,fromlen); // Add +1 because of 0-termination
                     if(n  < 0) error("sendto");
                     
             free(tmpBuf); 
         }
-        // Send data back if L
+        // Send data back if ASCII 'L' or 'l'
         else if(*buf == 'l' || *buf == 'L')
         {
             memset(&buf, 0, sizeof(buf));
