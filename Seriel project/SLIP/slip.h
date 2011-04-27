@@ -17,7 +17,7 @@
 const DATA_MAX = 1050;
 
 // Functions
-/**	\brief Makes connection over "/dev/ttyS0";.
+/**	\brief Makes connection over "/dev/ttyusb0".
 *	\pre Another serial connection is not open.(Remember to close after using this connection)
 * 	\post A connection is made(Returns '1' else '0').
 */
