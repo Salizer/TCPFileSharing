@@ -21,13 +21,13 @@ const DATA_MAX = 1050;
 *	\pre Another serial connection is not open.(Remember to close after using this connection)
 * 	\post A connection is made(Returns '1' else '0').
 */
-int connect();
+int SLIPConnect();
  
 /**	\brief Closes connection.
 *	\pre A serial connection is open.
 * 	\post The connection is closed.
 */
-void close();
+void SLIPClose();
  
 /**	\brief Sends a package.
 *	\pre A connection is open. Data contains minimum 'n' number of bytes. 'n' is less than or equal to DATA_MAX.	

@@ -10,7 +10,7 @@
 v24_port_t* currentConnection = 0; // Used to keep track of connection
 
 // Implementation of the functions in "slip.h"
-int connect()
+int SLIPConnect()
 {
 	// Tmp variables
 	int params = 0;
@@ -34,7 +34,7 @@ int connect()
 	}
 }
 
-void close()
+void SLIPClose()
 {
 	v24ClosePort(UsedPort);
 }
