@@ -85,7 +85,7 @@ size_t receivePackage(char data[]);
 	size_t index = 0; // Index for changing 'data'
 	size_t read = 0; // How many bytes read
 	
-	if(v24Getc (currentConnection) != FRAME_CHAR) // Error in data stream
+	if(v24Getc(currentConnection) != FRAME_CHAR) // Error in data stream
 	{
 		// Ignore until next FRAME_CHAR encountered
 		while(v24Getc (currentConnection) != FRAME_CHAR)
@@ -113,7 +113,6 @@ size_t receivePackage(char data[]);
 					// Ignore until next FRAME_CHAR encountered
 					while(v24Getc (currentConnection) != FRAME_CHAR)
 						{}
-						
 					return(0);
 				break;
 			}
@@ -122,6 +121,7 @@ size_t receivePackage(char data[]);
 			data[index] = currentChar;
 
 		read++;
+		index++;
 	}
 	return(read);
 }
