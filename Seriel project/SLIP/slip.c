@@ -32,6 +32,7 @@ int SLIPConnect()
 		v24ClosePort(UsedPort);
 		return(-1);
 	}
+	int v24SetTimeouts (currentConnection, 50); // Timeout(So doesn´t waits forever in reading loop)(Sat to 5 seconds)
 }
 
 void SLIPClose()
@@ -89,7 +90,7 @@ size_t receivePackage(char data[]);
 	{
 		// Ignore until next FRAME_CHAR encountered
 		while(v24Getc (currentConnection) != FRAME_CHAR)
-			{}
+			{if(currentChar == -1) return(0);} // -1 means error in reading
 			
 		return(0);
 	}
@@ -97,6 +98,10 @@ size_t receivePackage(char data[]);
 	// Get data
 	while((currentChar = v24Getc (currentConnection)) != FRAME_CHAR) // Until end of 'frame' encountered
 	{
+		// Check for error
+		if(currentChar == -1)
+			return(0);
+		
 		// Check if special char or just normal
 		if(currentChar == FRAME_CHAR_SUB1)
 		{
@@ -112,7 +117,7 @@ size_t receivePackage(char data[]);
 				default: // Error occured
 					// Ignore until next FRAME_CHAR encountered
 					while(v24Getc (currentConnection) != FRAME_CHAR)
-						{}
+						{if(currentChar == -1) return(0);} // -1 means error in reading
 					return(0);
 				break;
 			}
