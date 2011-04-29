@@ -68,10 +68,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slip_8h.html#a6045e10b730f1c443651f5209bd9e913">connect</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes connection over "/dev/ttyusb0".  <a href="#a6045e10b730f1c443651f5209bd9e913"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slip_8h.html#a5ae591df94fc66ccb85cbb6565368bca">close</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes connection.  <a href="#a5ae591df94fc66ccb85cbb6565368bca"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slip_8h.html#ac67cf112daa0bc2058690246c127e9f7">SLIPConnect</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes connection over "/dev/ttyusb0".  <a href="#ac67cf112daa0bc2058690246c127e9f7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slip_8h.html#a14e16287f541843d6c87ab30048cf25b">SLIPClose</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes connection.  <a href="#a14e16287f541843d6c87ab30048cf25b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slip_8h.html#abe04613da0f80a8eef2f563164faa613">sendPacket</a> (char *data, size_t n)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a package.  <a href="#abe04613da0f80a8eef2f563164faa613"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slip_8h.html#ad697b895595f79f08b38229dc685e2b4">receivePackage</a> (char data[])</td></tr>
@@ -79,50 +79,9 @@ Functions</h2></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slip_8h.html#a30b62645c9e126e72e6b0f64fb69627b">DATA_MAX</a> = 1050</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements SLIP(Seriel Line Internet Protocol) transfer over serial communication(RS-232). Uses the standard: <a href="http://tools.ietf.org/html/rfc1055">http://tools.ietf.org/html/rfc1055</a> Except:  <a href="#a30b62645c9e126e72e6b0f64fb69627b"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"></div><hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a5ae591df94fc66ccb85cbb6565368bca"></a><!-- doxytag: member="slip.h::close" ref="a5ae591df94fc66ccb85cbb6565368bca" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void close </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Closes connection. </p>
-<dl class="pre"><dt><b>Precondition:</b></dt><dd>A serial connection is open. </dd></dl>
-<dl class="post"><dt><b>Postcondition:</b></dt><dd>The connection is closed. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a6045e10b730f1c443651f5209bd9e913"></a><!-- doxytag: member="slip.h::connect" ref="a6045e10b730f1c443651f5209bd9e913" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int connect </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Makes connection over "/dev/ttyusb0". </p>
-<dl class="pre"><dt><b>Precondition:</b></dt><dd>Another serial connection is not open.(Remember to close after using this connection) </dd></dl>
-<dl class="post"><dt><b>Postcondition:</b></dt><dd>A connection is made(Returns '1' else '0'). </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="ad697b895595f79f08b38229dc685e2b4"></a><!-- doxytag: member="slip.h::receivePackage" ref="ad697b895595f79f08b38229dc685e2b4" args="(char data[])" -->
 <div class="memitem">
 <div class="memproto">
@@ -139,8 +98,8 @@ Variables</h2></td></tr>
 <div class="memdoc">
 
 <p>Receives a package. </p>
-<dl class="pre"><dt><b>Precondition:</b></dt><dd>A connection is open. Data can contain atleast DATA_MAX * 2. </dd></dl>
-<dl class="post"><dt><b>Postcondition:</b></dt><dd>'data' now contains the data from the package and the number of bytes received is returned.(0 if error) </dd></dl>
+<dl class="pre"><dt><b>Precondition:</b></dt><dd>A connection is open. Data can contain atleast DATA_MAX. </dd></dl>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd>'data' now contains the data from the package and the number of bytes received is returned.(0 if error stream) </dd></dl>
 
 </div>
 </div>
@@ -175,6 +134,46 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a14e16287f541843d6c87ab30048cf25b"></a><!-- doxytag: member="slip.h::SLIPClose" ref="a14e16287f541843d6c87ab30048cf25b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SLIPClose </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Closes connection. </p>
+<dl class="pre"><dt><b>Precondition:</b></dt><dd>A serial connection is open. </dd></dl>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd>The connection is closed. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac67cf112daa0bc2058690246c127e9f7"></a><!-- doxytag: member="slip.h::SLIPConnect" ref="ac67cf112daa0bc2058690246c127e9f7" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SLIPConnect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Makes connection over "/dev/ttyusb0". </p>
+<dl class="pre"><dt><b>Precondition:</b></dt><dd>Another serial connection is not open.(Remember to close after using this connection) </dd></dl>
+<dl class="post"><dt><b>Postcondition:</b></dt><dd>A connection is made(Returns '1' else '0'). </dd></dl>
+
+</div>
+</div>
 <hr/><h2>Variable Documentation</h2>
 <a class="anchor" id="a30b62645c9e126e72e6b0f64fb69627b"></a><!-- doxytag: member="slip.h::DATA_MAX" ref="a30b62645c9e126e72e6b0f64fb69627b" args="" -->
 <div class="memitem">
@@ -186,16 +185,14 @@ Variables</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Implements SLIP(Seriel Line Internet Protocol) transfer over serial communication(RS-232). Uses the standard: <a href="http://tools.ietf.org/html/rfc1055">http://tools.ietf.org/html/rfc1055</a> Except: </p>
+<p>Implements SLIP(Seriel Line Internet Protocol) transfer over serial communication(RS-232). For info: <a href="http://tools.ietf.org/html/rfc1055">http://tools.ietf.org/html/rfc1055</a></p>
+<p>Notes: </p>
 <ul>
 <li>
-Uses one kind of byte for start and finish('A') </li>
-<li>
-Can send a maximum of DATA_MAX characters at a time(Can actually be more because of byte-stuffing) </li>
+Can send a maximum of DATA_MAX characters at a time </li>
 </ul>
 <dl class="author"><dt><b>Author:</b></dt><dd>NSRD </dd></dl>
-<dl class="date"><dt><b>Date:</b></dt><dd>27/04 -11 Global constants </dd></dl>
+<dl class="date"><dt><b>Date:</b></dt><dd>29/04 -11 </dd></dl>
 
 </div>
 </div>
@@ -214,7 +211,7 @@ Can send a maximum of DATA_MAX characters at a time(Can actually be more because
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 27 2011 20:15:14 for SLIP by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Apr 29 2011 23:55:14 for SLIP by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

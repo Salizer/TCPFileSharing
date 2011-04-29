@@ -63,12 +63,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
 <a name="l00014"></a>00014 <span class="preprocessor"> #include &lt;ezV24/ezV24.h&gt;</span> <span class="comment">// Used for serial connection</span>
 <a name="l00015"></a>00015 
-<a name="l00017"></a><a class="code" href="slip_8h.html#a30b62645c9e126e72e6b0f64fb69627b">00017</a> <span class="keyword">const</span> <a class="code" href="slip_8h.html#a30b62645c9e126e72e6b0f64fb69627b" title="Implements SLIP(Seriel Line Internet Protocol) transfer over serial communication(RS-232). Uses the standard: http://tools.ietf.org/html/rfc1055 Except:">DATA_MAX</a> = 1050;
+<a name="l00016"></a>00016 <span class="comment">// Global constants</span>
+<a name="l00017"></a><a class="code" href="slip_8h.html#a30b62645c9e126e72e6b0f64fb69627b">00017</a> <span class="keyword">const</span> <a class="code" href="slip_8h.html#a30b62645c9e126e72e6b0f64fb69627b">DATA_MAX</a> = 1050;
 <a name="l00018"></a>00018 
 <a name="l00019"></a>00019 <span class="comment">// Functions</span>
-<a name="l00024"></a>00024 <span class="comment"></span><span class="keywordtype">int</span> connect();
+<a name="l00024"></a>00024 <span class="comment"></span><span class="keywordtype">int</span> SLIPConnect();
 <a name="l00025"></a>00025  
-<a name="l00030"></a>00030 <span class="keywordtype">void</span> close();
+<a name="l00030"></a>00030 <span class="keywordtype">void</span> SLIPClose();
 <a name="l00031"></a>00031  
 <a name="l00036"></a>00036 <span class="keywordtype">void</span> sendPacket(<span class="keywordtype">char</span>* data, <span class="keywordtype">size_t</span> n);
 <a name="l00037"></a>00037  
@@ -91,7 +92,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Apr 27 2011 20:15:14 for SLIP by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Apr 29 2011 23:55:14 for SLIP by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>

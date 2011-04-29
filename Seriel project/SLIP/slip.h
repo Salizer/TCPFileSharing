@@ -1,7 +1,7 @@
 #ifndef SLIP_H
 #define SLIP_H
 /** \file slip.h*/
-/** \brief Implements SLIP(Seriel Line Internet Protocol) transfer over serial communication(RS-232).
+/** Implements SLIP(Seriel Line Internet Protocol) transfer over serial communication(RS-232).
  * 			For info: http://tools.ietf.org/html/rfc1055
  *
  *			Notes:
@@ -9,11 +9,11 @@
  * 				<li> Can send a maximum of DATA_MAX characters at a time
  * 			</ul>
  *	\author NSRD
- * 	\date 27/04 -11
+ * 	\date 29/04 -11
  */
  #include <ezV24/ezV24.h> // Used for serial connection
 
-/** Global constants */
+// Global constants
 const DATA_MAX = 1050;
 
 // Functions
