@@ -2,11 +2,11 @@
 #define SLIP_H
 /** \file slip.h*/
 /** \brief Implements SLIP(Seriel Line Internet Protocol) transfer over serial communication(RS-232).
- * 			Uses the standard: http://tools.ietf.org/html/rfc1055
- * 			Except: 
+ * 			For info: http://tools.ietf.org/html/rfc1055
+ *
+ *			Notes:
  * 			<ul>
- * 				<li> Uses one kind of byte for start and finish('A')
- * 				<li> Can send a maximum of DATA_MAX characters at a time(Can actually be more because of byte-stuffing)
+ * 				<li> Can send a maximum of DATA_MAX characters at a time
  * 			</ul>
  *	\author NSRD
  * 	\date 27/04 -11
