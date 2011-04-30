@@ -37,7 +37,7 @@ void sendPacket(char* data, size_t n);
  
 /** \brief Receives a package.
 *	\pre A connection is open. Data can contain atleast DATA_MAX.
-*	\post 'data' now contains the data from the package and the number of bytes received is returned.(0 if error stream)
+*	\post 'data' now contains the data from the package and the number of bytes received is returned.(0 if error stream or timeout)
 */
 size_t receivePackage(char data[]);
 
