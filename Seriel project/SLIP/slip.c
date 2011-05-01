@@ -81,8 +81,8 @@ size_t receivePackage(char data[]);
 	// Also remember not to give back FRAME_CHAR´s in start and end
 	
 	// Tmp variables
-	char currentChar = 0; // Current char read from buffer
-	char specialChar = 0; // In case of byte stuffing
+	int currentChar = 0; // Current char read from buffer('int' because checking for errors[-1])
+	int specialChar = 0; // In case of byte stuffing('int' because checking for errors[-1])
 	size_t index = 0; // Index for changing 'data'
 	size_t read = 0; // How many bytes read
 	
@@ -98,15 +98,15 @@ size_t receivePackage(char data[]);
 			return(0);
 		
 		// Check if special char or just normal
-		if(currentChar = FRAME_CHAR) // Case if beginning of package or end of package
+		if((char)currentChar = FRAME_CHAR) // Case if beginning of package or end of package
 		{
 			if(read > 0) // Have read something so should be end of package
 				return(read);
 		}
-		else if(currentChar == FRAME_CHAR_SUB1)
+		else if((char)currentChar == FRAME_CHAR_SUB1)
 		{
 			specialChar = v24Getc (currentConnection); // Get next char
-			switch(specialChar)
+			switch((char)specialChar)
 			{
 				case FRAME_CHAR_SUB2:
 					data[index] = FRAME_CHAR;
@@ -116,7 +116,7 @@ size_t receivePackage(char data[]);
 				break;
 				default: // Error occured
 					// Ignore until next FRAME_CHAR encountered
-					while(v24Getc (currentConnection) != FRAME_CHAR)
+					while((char)(currentChar = v24Getc(currentConnection))) != FRAME_CHAR)
 						{if(currentChar == -1) return(0);} // -1 means error in reading
 					return(0);
 				break;
@@ -126,7 +126,7 @@ size_t receivePackage(char data[]);
 		}
 		else // Normal
 		{
-			data[index] = currentChar;
+			data[index] = (char)currentChar;
 			read++;
 			index++;
 		}
