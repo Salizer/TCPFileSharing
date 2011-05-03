@@ -1,19 +1,19 @@
 #ifndef SLIP_H
 #define SLIP_H
 /** \file slip.h*/
-/** \brief Implements SLIP(Seriel Line Internet Protocol) transfer over serial communication(RS-232).
- * 			Uses the standard: http://tools.ietf.org/html/rfc1055
- * 			Except: 
+/** Implements SLIP(Seriel Line Internet Protocol) transfer over serial communication(RS-232).
+ * 			For info: http://tools.ietf.org/html/rfc1055
+ *
+ *			Notes:
  * 			<ul>
- * 				<li> Uses one kind of byte for start and finish('A')
- * 				<li> Can send a maximum of DATA_MAX characters at a time(Can actually be more because of byte-stuffing)
+ * 				<li> Can send a maximum of DATA_MAX characters at a time
  * 			</ul>
  *	\author NSRD
- * 	\date 27/04 -11
+ * 	\date 29/04 -11
  */
  #include <ezV24/ezV24.h> // Used for serial connection
 
-/** Global constants */
+// Global constants
 const DATA_MAX = 1050;
 
 // Functions
@@ -21,13 +21,13 @@ const DATA_MAX = 1050;
 *	\pre Another serial connection is not open.(Remember to close after using this connection)
 * 	\post A connection is made(Returns '1' else '0').
 */
-int connect();
+int SLIPConnect();
  
 /**	\brief Closes connection.
 *	\pre A serial connection is open.
 * 	\post The connection is closed.
 */
-void close();
+void SLIPClose();
  
 /**	\brief Sends a package.
 *	\pre A connection is open. Data contains minimum 'n' number of bytes. 'n' is less than or equal to DATA_MAX.	
@@ -36,9 +36,9 @@ void close();
 void sendPacket(char* data, size_t n);
  
 /** \brief Receives a package.
-*	\pre A connection is open. Data can contain atleast DATA_MAX * 2.
-*	\post 'data' now contains the data from the package and the number of bytes received is returned.(0 if error)
+*	\pre A connection is open. Data can contain atleast DATA_MAX.
+*	\post 'data' now contains the data from the package and the number of bytes received is returned.(0 if error stream or timeout)
 */
-size_t receivePackage(char data[]);
+int receivePackage(char data[]);
 
 #endif

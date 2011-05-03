@@ -10,7 +10,7 @@
 v24_port_t* currentConnection = 0; // Used to keep track of connection
 
 // Implementation of the functions in "slip.h"
-int connect()
+int SLIPConnect()
 {
 	// Tmp variables
 	int params = 0;
@@ -32,9 +32,10 @@ int connect()
 		v24ClosePort(UsedPort);
 		return(-1);
 	}
+	int v24SetTimeouts (currentConnection, 50); // Timeout(So doesn´t waits forever in reading loop)(Sat to 5 seconds)
 }
 
-void close()
+void SLIPClose()
 {
 	v24ClosePort(UsedPort);
 }
@@ -80,28 +81,32 @@ size_t receivePackage(char data[]);
 	// Also remember not to give back FRAME_CHAR´s in start and end
 	
 	// Tmp variables
-	char currentChar = 0;
-	char specialChar = 0; // In case of byte stuffing
+	int currentChar = 0; // Current char read from buffer('int' because checking for errors[-1])
+	int specialChar = 0; // In case of byte stuffing('int' because checking for errors[-1])
 	size_t index = 0; // Index for changing 'data'
 	size_t read = 0; // How many bytes read
 	
-	if(v24Getc (currentConnection) != FRAME_CHAR) // Error in data stream
-	{
-		// Ignore until next FRAME_CHAR encountered
-		while(v24Getc (currentConnection) != FRAME_CHAR)
-			{}
-			
-		return(0);
-	}
 	
 	// Get data
-	while((currentChar = v24Getc (currentConnection)) != FRAME_CHAR) // Until end of 'frame' encountered
+	while(1) // Until end of 'frame' encountered
 	{
+		// Read one char
+		currentChar = v24Getc (currentConnection);
+	
+		// Check for error
+		if(currentChar == -1)
+			return(0);
+		
 		// Check if special char or just normal
-		if(currentChar == FRAME_CHAR_SUB1)
+		if((char)currentChar = FRAME_CHAR) // Case if beginning of package or end of package
+		{
+			if(read > 0) // Have read something so should be end of package
+				return(read);
+		}
+		else if((char)currentChar == FRAME_CHAR_SUB1)
 		{
 			specialChar = v24Getc (currentConnection); // Get next char
-			switch(specialChar)
+			switch((char)specialChar)
 			{
 				case FRAME_CHAR_SUB2:
 					data[index] = FRAME_CHAR;
@@ -111,17 +116,19 @@ size_t receivePackage(char data[]);
 				break;
 				default: // Error occured
 					// Ignore until next FRAME_CHAR encountered
-					while(v24Getc (currentConnection) != FRAME_CHAR)
-						{}
-						
+					while((char)(currentChar = v24Getc(currentConnection))) != FRAME_CHAR)
+						{if(currentChar == -1) return(0);} // -1 means error in reading
 					return(0);
 				break;
 			}
+			read++;
+			index++;
 		}
 		else // Normal
-			data[index] = currentChar;
-
-		read++;
+		{
+			data[index] = (char)currentChar;
+			read++;
+			index++;
+		}
 	}
-	return(read);
 }
