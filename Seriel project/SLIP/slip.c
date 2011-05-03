@@ -114,10 +114,8 @@ size_t receivePackage(char data[]);
 				case SUB_SUB:
 					data[index] = FRAME_CHAR_SUB1;
 				break;
-				default: // Error occured
-					// Ignore until next FRAME_CHAR encountered
-					while((char)(currentChar = v24Getc(currentConnection))) != FRAME_CHAR)
-						{if(currentChar == -1) return(0);} // -1 means error in reading
+				default: // Error occured(But still send, then upper-layer should decide what to do)
+					data[index] = (char)specialChar;
 					return(0);
 				break;
 			}
