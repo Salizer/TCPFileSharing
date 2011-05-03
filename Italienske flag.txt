@@ -1,0 +1,30 @@
+procedure syncGenerator( 
+signal syncCounter :  inout integer;
+signal syncOut : out std_logic;
+signal blankOut : out std_logic;
+constant frontPorch : in natural;
+constant backPorch : in natural;
+constant dataLen : in natural;
+constant syncWidth : in natural) is
+begin	
+-- Your procedure should circular increment syncCounter, produce blanking and sync output.  
+
+if syncCounter > (backPorch + dataLen + frontPorch + syncWidth) then
+  syncCounter <= 0;
+else
+  syncCounter <= syncCounter + 1;
+end if;
+
+if (syncCounter < BackPorch) or (syncCounter > (backPorch + dataLen)) then
+  blankOut <= '1';
+else
+  blankOut <= '0';
+end if;
+
+if (syncCounter > (backPorch + dataLen + frontPorch - 1)) then
+  syncOut <= '0';
+else
+  syncOut <= '1';
+end if;
+end syncGenerator;
+
