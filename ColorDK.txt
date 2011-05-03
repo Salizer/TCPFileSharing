@@ -1,0 +1,24 @@
+color: process (reset, hSyncCounter,vSyncCounter)  -- draws italian flag color scheme
+begin
+  if ((hSyncCounter > hBackPorch) and (hSyncCounter <= hBackPorch+213) and (vSyncCounter <= vFrontPorch + 200)) then
+    red   <= (others => '1');  -- Top left
+    green <= (others => '0');
+    blue  <= (others => '0');  
+  elsif((hSyncCounter > hBackPorch) and (hSyncCounter >= hBackPorch+293) and (vSyncCounter <= vFrontPorch + 200)) then
+	red   <= (others => '1');  -- Top right
+    green <= (others => '0');
+    blue  <= (others => '0'); 
+  elsif((hSyncCounter > hBackPorch) and (hSyncCounter <= hBackPorch+213) and (vSyncCounter >= vFrontPorch + 300)) then
+	red   <= (others => '1');  -- Bottom left
+    green <= (others => '0');
+    blue  <= (others => '0'); 
+  elsif((hSyncCounter > hBackPorch) and (hSyncCounter >= hBackPorch+293) and (vSyncCounter >= vFrontPorch + 300)) then
+	red   <= (others => '1');  -- Bottom right
+    green <= (others => '0');
+    blue  <= (others => '0'); 
+  else
+    red   <= (others => '1');  -- White
+    green <= (others => '1');
+    blue  <= (others => '1');   
+  end if;
+end process;
