@@ -14,12 +14,12 @@ int SLIPConnect()
 {
 	// Tmp variables
 	int params = 0;
-	
+
 	// Open
-	currentConnection = v24OpenPort("/dev/ttyusb0",V24_STANDARD);
+	currentConnection = v24OpenPort("/dev/ttyS1",V24_STANDARD);
 	if(currentConnection == 0) // Error occured
 		return(-1);
-	
+
 	// Settings
 	/*
 	 *	Baud rate: 9600
@@ -27,17 +27,17 @@ int SLIPConnect()
 	 * 	Parity bit generation: Disabled
 	 */
 	params = v24SetParameters(currentConnection,V24_B9600,V24_8BIT,V24_NONE);
-	if(rc!=V24_E_OK) // Error occured
+	if(params!=V24_E_OK) // Error occured
 	{
-		v24ClosePort(UsedPort);
+		v24ClosePort(currentConnection);
 		return(-1);
 	}
-	int v24SetTimeouts (currentConnection, 50); // Timeout(So doesn´t waits forever in reading loop)(Sat to 5 seconds)
+	v24SetTimeouts (currentConnection, 50); // Timeout(So doesn´t waits forever in reading loop)(Sat to 5 seconds)
 }
 
 void SLIPClose()
 {
-	v24ClosePort(UsedPort);
+	v24ClosePort(currentConnection);
 }
 
 void sendPacket(char* data, size_t n)
@@ -45,10 +45,10 @@ void sendPacket(char* data, size_t n)
 	// Check size
 	if(n > DATA_MAX)
 		return;
-	
+
 	// Start of package
-	24Putc(currentConnection, FRAME_CHAR);
-	
+	v24Putc(currentConnection, FRAME_CHAR);
+
 	// Send data
 	while(n) // For each byte
 	{
@@ -56,52 +56,52 @@ void sendPacket(char* data, size_t n)
 		switch(*data)
 		{
 			case FRAME_CHAR:
-				24Putc(currentConnection, FRAME_CHAR_SUB1);
-				24Putc(currentConnection, FRAME_CHAR_SUB2);
+				v24Putc(currentConnection, FRAME_CHAR_SUB1);
+				v24Putc(currentConnection, FRAME_CHAR_SUB2);
 			break;
 			case FRAME_CHAR_SUB1:
-				24Putc(currentConnection, FRAME_CHAR_SUB1);
-				24Putc(currentConnection, SUB_SUB);
+				v24Putc(currentConnection, FRAME_CHAR_SUB1);
+				v24Putc(currentConnection, SUB_SUB);
 			break;
 			default: // Just send
-				24Putc(currentConnection, *data);
+				v24Putc(currentConnection, *data);
 			break;
 		}
 		// Next byte
 		data++;
 	}
-	
+
 	// End of package
-	24Putc(currentConnection, FRAME_CHAR);
+	v24Putc(currentConnection, FRAME_CHAR);
 }
 
-size_t receivePackage(char data[]);
+size_t receivePackage(char data[])
 {
 	// Remember case of double FRAME_CHAR in start of new package: FRAME_CHAR --DATA-- FRAME_CHAR FRAME_CHAR --DATA-- FRAME_CHAR
 	// Also remember not to give back FRAME_CHAR´s in start and end
-	
+
 	// Tmp variables
 	int currentChar = 0; // Current char read from buffer('int' because checking for errors[-1])
 	int specialChar = 0; // In case of byte stuffing('int' because checking for errors[-1])
 	size_t index = 0; // Index for changing 'data'
 	size_t read = 0; // How many bytes read
-	
-	
+
+
 	// Get data
 	while(1) // Until end of 'frame' encountered
 	{
 		// Read one char
 		currentChar = v24Getc (currentConnection);
-	
+
 		// Check for error
 		if(currentChar == -1)
 			return(0);
-		
+
 		// Check if special char or just normal
-		if((char)currentChar = FRAME_CHAR) // Case if beginning of package or end of package
+		if((char)currentChar == FRAME_CHAR) // Case if beginning of package or end of package
 		{
 			if(read > 0) // Have read something so should be end of package
-				return(read);
+			    return(read);
 		}
 		else if((char)currentChar == FRAME_CHAR_SUB1)
 		{
