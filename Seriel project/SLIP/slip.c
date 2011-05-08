@@ -18,7 +18,7 @@ int SLIPConnect()
 	// Open
 	currentConnection = v24OpenPort("/dev/ttyS1",V24_STANDARD);
 	if(currentConnection == 0) // Error occured
-		return(-1);
+		return(0);
 
 	// Settings
 	/*
@@ -30,9 +30,11 @@ int SLIPConnect()
 	if(params!=V24_E_OK) // Error occured
 	{
 		v24ClosePort(currentConnection);
-		return(-1);
+		return(0);
 	}
 	v24SetTimeouts (currentConnection, 50); // Timeout(So doesn´t waits forever in reading loop)(Sat to 5 seconds)
+
+	return(1);
 }
 
 void SLIPClose()
@@ -69,6 +71,7 @@ void sendPacket(char* data, size_t n)
 		}
 		// Next byte
 		data++;
+		n--;
 	}
 
 	// End of package
