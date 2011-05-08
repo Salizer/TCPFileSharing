@@ -14,9 +14,13 @@ class MyFrame : public QFrame
 {
 public:
     MyFrame(QGroupBox*);
+    ~MyFrame();
 
 protected:
     void paintEvent(QPaintEvent* event);
+
+private:
+    CvCapture* capture; // For webcam feed
 };
 
 
@@ -55,6 +59,7 @@ public:
 signals:
     void incrementing(int value);
     void done(QString value);
+    void updateCam();
 };
 
 // Classes

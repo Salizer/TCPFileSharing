@@ -7,14 +7,21 @@
 
 void MyThread::run()
 {
-   for(int i = 1; i <= 100; i++)
+    while(1)
+    {
+        emit updateCam();
+        this->msleep(200);
+    }
+
+   /*for(int i = 1; i <= 100; i++)
    {
         sleep(1);
         emit incrementing(i*1);
-   }
+   }*/
    emit done("Done");
 }
 
+// To convert OpenCV images into Qt images
 static QImage IplImage2QImage(const IplImage *iplImage)
 {
     int height = iplImage->height;
@@ -59,65 +66,59 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->btnAuto, SIGNAL(clicked()), this, SLOT(autoSelected()));
     connect(ui->btnManuel, SIGNAL(clicked()), this, SLOT(manuelSelected()));
 
-    // Starting
-    // -Threads
-    mThread->start();
-
     // Testing
-    /*const char* imagename = "lol.jpg";
-    cv::Ptr<IplImage> iplimg = cvLoadImage(imagename);
-
-    QImage imgA;
-    if(iplimg != NULL)
-        imgA = IplImage2QImage(iplimg);
-
-    if(!imgA.isNull())
-        ui->progressBar->setValue(50);*/
-
-    /*QPainter* painter = new QPainter();
-    painter->begin(this);  // Tell your QPainter to  paint onto the "this"-
-                            // Widget.(The "this" pointer points to the object
-                            // it is used in; in our case it's your "YourFrame"
-                            // object)
-
-    painter->drawRect(10, 10, this->width()-10, this->height()-10);
-            // Draw a rectangle at 10, 10, widget_width - 10, widget_height - 10
-
-    painter->end();	// close the painter*/
-    MyFrame* mA = new MyFrame(ui->groupBox);
-    mA->setGeometry(0, 0, 200, 200);
+    // -Threads and videoFrame
+    MyFrame* mA = new MyFrame(ui->groupBox_2);
+    mA->setGeometry(20, 20, 420, 420);
+    connect(mThread, SIGNAL(updateCam()), mA, SLOT(update()));
+    mThread->start();
+    mThread->setPriority(QThread::LowestPriority);
 }
 
 // TEST: To be used in class 'VideoFrame'
 MyFrame::MyFrame(QGroupBox* g) : QFrame(g)
 {
+    // capture from video device #0
+    capture = cvCaptureFromCAM(0);
 
+    // Additional settings
+    cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH, 480); // Only some predfined sizes seem to work
+    cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT, 480); // Only some predfined sizes seem to work
 }
+MyFrame::~MyFrame()
+{
+    // Release capture source
+    cvReleaseCapture(&capture);
+}
+
 void MyFrame::paintEvent(QPaintEvent* event)
 {
+    // Variables
     QFrame::paintEvent(event);
-
-    QPainter* painter = new QPainter();
-    painter->begin(this);  // Tell your QPainter to  paint onto the "this"-
-                            // Widget.(The "this" pointer points to the object
-                            // it is used in; in our case it's your "YourFrame"
-                            // object)
-
-    //painter->drawRect(10, 10, this->width()-10, this->height()-10);
-
-    const char* imagename = "lol.jpg";
-    cv::Ptr<IplImage> iplimg = cvLoadImage(imagename);
-
+    IplImage* iplimg;
     QImage imgA;
-    if(iplimg != NULL)
+    QPainter* painter = new QPainter();
+
+    // Image capturing and drawing
+    painter->begin(this);
+
+    if(capture) // If 'capture' initialised
+    {
+        cvGrabFrame(capture);
+        iplimg = cvRetrieveFrame(capture);
+    }
+
+
+    if(iplimg != NULL) // Convert if image exists
         imgA = IplImage2QImage(iplimg);
 
-
-
     painter->drawImage(0, 0, imgA);
-            // Draw a rectangle at 10, 10, widget_width - 10, widget_height - 10
+    painter->setPen(QColor(255, 0, 0));
+    painter->drawEllipse(this->width()/2, this->height()/2, 10, 10);
+    painter->drawEllipse(this->width()/2 - 5, this->height()/2 - 5, 20, 20);
 
     painter->end();	// close the painter
+
 }
 
 MainWindow::~MainWindow()
