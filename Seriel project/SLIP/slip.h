@@ -19,7 +19,7 @@
 // Functions
 /**	\brief Makes connection over "/dev/ttyS1".
 *	\pre Another serial connection is not open.(Remember to close after using this connection)
-* 	\post A connection is made(Returns '1' else '0').
+* 	\post A connection is made(Returns '0' else '-1').
 */
 int SLIPConnect();
 
