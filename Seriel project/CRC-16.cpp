@@ -1,12 +1,12 @@
-// Projekt        DKT1 Øvelser 
+// Projekt        DKT1 Øvelser
 //
 // Fil            CRC-16.cpp
-// Forfatter      David Schwaderer 
+// Forfatter      David Schwaderer
 //                ændret af Erik Gross Jensen
 //
-// Beskrivelse    Udregner CRC16 på et array af char's .  
+// Beskrivelse    Udregner CRC16 på et array af char's .
 
-// Version: 
+// Version:
 // The logic for this method of calculating the CRC 16 bit polynomial is taken
 // from an article by David Schwaderer in the April 1985 issue of PC Tech
 // Journal.
@@ -15,7 +15,7 @@
 //
 //
 
-#include "crc-16.h"
+#include "CRC-16.h"
 
 
 //*************************************************************
@@ -67,14 +67,14 @@ void crcCalc(char *buf, int len,char &crc1, char &crc2)
 // Output:
 // crc1 : Her retuneres mest betydende byte af den udregnede crc
 // crc2 : Her retuneres mindst betydende byte af den udregnede crc
-//*************************************************************************	
+//*************************************************************************
 {
 	int	i,crc=0;
-	
+
 	for (i=0; i<len; i++)
 		crc = ((crc >> 8) & 0xff) ^ crctab[(crc ^ *buf++) & 0xff];
 
-	//opdel 16 bit crc i 2 bytes 
+	//opdel 16 bit crc i 2 bytes
 	crc1 = crc / 256;
 	crc2 = crc % 256;
 

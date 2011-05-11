@@ -16,6 +16,10 @@
 // Global constants
 #define DATA_MAX 1050
 
+#ifdef __cplusplus
+    extern "C" {
+#endif
+
 // Functions
 /**	\brief Makes connection over "/dev/ttyS1".
 *	\pre Another serial connection is not open.(Remember to close after using this connection)
@@ -40,5 +44,9 @@ void sendPacket(char* data, size_t n);
 *	\post 'data' now contains the data from the package and the number of bytes received is returned.(0 if error stream or timeout)
 */
 size_t receivePackage(char data[]);
+
+#ifdef __cplusplus
+    }
+#endif
 
 #endif
