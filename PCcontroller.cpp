@@ -10,6 +10,7 @@
 // Version        1.0 041200 EGJ - oprindelig version
 //				  1.1 040202 EGJ - flere kommentarer tilføjet
 //				  1.2 181108 NVJ - tilrettet 1. sem. projekt
+// 				  1.3 140511 SLT - tilrettet til LTS
 
 #include "PCµcontroller.h"
 
