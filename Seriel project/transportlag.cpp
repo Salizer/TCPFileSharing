@@ -33,7 +33,8 @@ void send(char * data , int size) // size = der skal sendes
 	{
 	sendPacket(array, size+4);
 
-    printf("Data: %u %u %u %u %c\n", (unsigned char)array[0], (unsigned char)array[1], (unsigned char)array[2], (unsigned char)array[3], array[4]);
+    // NOTICE: ONLY FOR TESTING. REMOVE AFTERWARDS
+    //printf("Data: %u %u %u %u %s\n", (unsigned char)array[0], (unsigned char)array[1], (unsigned char)array[2], (unsigned char)array[3], array + 4);
 	while(!receivePackage(buffer))
         {}
 
@@ -57,6 +58,14 @@ int recieve(char * data)
 	{
         while(!(read = receivePackage(buffer)))
             {}
+
+        // NOTICE: ONLY FOR TESTING. REMOVE AFTERWARDS
+        int high = (unsigned char)buffer[0];
+        int low = (unsigned char)buffer[1];
+        int type = (unsigned char)buffer[2];
+        int seq = (unsigned char)buffer[3];
+
+        printf("High: %i\nLow: %i\nType: %i\nSeq: %i\nData: %s", high, low, type, seq, buffer+4);
 
         crcCalc(buffer+4, read-4, crchigh, crclow);
 
