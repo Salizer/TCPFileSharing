@@ -9,6 +9,7 @@
 //
 // Version        1.0 041200 EGJ - oprindelig version
 //				  1.1 181108 NVJ - tilrettet 1. sem. projekt
+// 				  1.2 140511 SLT - tilrettet til LTS
 
 #pragma once
 
