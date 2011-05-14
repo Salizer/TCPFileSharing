@@ -34,7 +34,7 @@ void send(char * data , int size) // size = der skal sendes
 	sendPacket(array, size+4);
 
     // NOTICE: ONLY FOR TESTING. REMOVE AFTERWARDS
-    //printf("Data: %u %u %u %u %s\n", (unsigned char)array[0], (unsigned char)array[1], (unsigned char)array[2], (unsigned char)array[3], array + 4);
+    printf("Data: %u %u %u %u %s\n", (unsigned char)array[0], (unsigned char)array[1], (unsigned char)array[2], (unsigned char)array[3], array + 4);
 	while(!receivePackage(buffer))
         {}
 
