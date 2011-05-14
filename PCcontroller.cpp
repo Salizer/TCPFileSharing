@@ -185,7 +185,7 @@ bool PCµcontroller::turnLeft()
 	char sendChar = (char)1;
 	PtrLeft->send(&sendChar, 1); // Turn left
 	int read = receive(temp); // receive( char *rxPtr )
-	if(read <= -90 && 0 <= read)
+	if(temp <= -90 && 0 <= temp)
 	return true;
 	else 
 	return false;
@@ -197,7 +197,7 @@ bool PCµcontroller::turnRight()
 	char sendChar = (char)2; // Typecasting
 	PtrRight->send(&sendChar, 1); // Turn right
 	int read = receive(temp);
-	if(read >= 0 && read <= 90)
+	if(temp >= 0 && temp <= 90)
 	return true;
 	else
 	return false;
@@ -209,7 +209,7 @@ bool PCµcontroller::turnDown()
 	char sendChar = (char)3; // Typecasting
 	PtrDown->send(&sendChar, 1); // Turn right
 	int read = receive(temp);
-	if(read <= 0 && read >= -60)
+	if(temp <= 0 && temp >= -60)
 	return true;
 	else
 	return false;
@@ -221,7 +221,7 @@ bool PCµcontroller::turnUp()
 	char sendChar = (char)4; // Typecasting
 	PtrDown->send(&sendChar, 1); // Turn right
 	int read = receive(temp);
-	if(read <= 60 && read >= 0)
+	if(temp <= 60 && temp >= 0)
 	return true;
 	else
 	return false;
