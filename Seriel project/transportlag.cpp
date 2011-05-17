@@ -7,7 +7,7 @@
 ////////////////////////Husk at indsætte begrænsninger//
 
 
-void send(char * data , int size) // size = der skal sendes
+void serialSend(char * data , int size) // size = der skal sendes
 {
 	static char seq = 0;
 	char crchigh;
@@ -41,7 +41,7 @@ void send(char * data , int size) // size = der skal sendes
 	seq = !seq;
 }
 
-int recieve(char * data)
+int serialReceive(char * data)
 {
 	char buffer[1028];
 	char crchigh;

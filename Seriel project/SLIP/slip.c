@@ -42,7 +42,7 @@ void SLIPClose()
 	v24ClosePort(currentConnection);
 }
 
-void sendPacket(char* data, size_t n)
+void sendPackage(char* data, size_t n)
 {
 	// Check size
 	if(n > DATA_MAX)

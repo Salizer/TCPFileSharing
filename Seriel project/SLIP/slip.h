@@ -37,7 +37,7 @@ void SLIPClose();
 *	\pre A connection is open. Data contains minimum 'n' number of bytes. 'n' is less than or equal to DATA_MAX.
 *	\post 'n' number of bytes from 'data' is sent.
 */
-void sendPacket(char* data, size_t n);
+void sendPackage(char* data, size_t n);
 
 /** \brief Receives a package.
 *	\pre A connection is open. Data can contain atleast DATA_MAX.

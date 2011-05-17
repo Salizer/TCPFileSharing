@@ -15,7 +15,7 @@ void Server::waitForClient()
 
     printf("Waiting for client.\n");
 
-	recieve(msgBuffer);
+	serialReceive(msgBuffer);
 
     FILE* stream;
 
@@ -26,7 +26,7 @@ void Server::waitForClient()
         printf("User requested: %s with a size of %ld bytes\n", msgBuffer, lengthOfFile);
 
         sprintf(msgBuffer, "%ld", lengthOfFile);
-		send(msgBuffer, strlen(msgBuffer)+1);
+		serialSend(msgBuffer, strlen(msgBuffer)+1);
 
 
         sendFile(stream, lengthOfFile);
@@ -36,7 +36,7 @@ void Server::waitForClient()
     else
     {
         printf("Client tried to get: %s\n", msgBuffer);
-        send("0", 2);
+        serialSend("0", 2);
     }
 
     printf("Client connection closed\n");
@@ -61,8 +61,8 @@ void Server::sendFile(FILE* file, long fileSize)
     {
         readFromFile  = fread(msgBuffer, 1, BUFFERSIZE, file);
 
-        // Send info
-		send(msgBuffer, readFromFile);
+        // serialSend info
+		serialSend(msgBuffer, readFromFile);
 
         if(feof(file)) // ALl read
             break;

@@ -29,9 +29,9 @@ int main(int argc, char *argv[])
     filnavn = "miley.jpg";
     printf("Client started:\n");
 
-	send(filnavn, strlen(filnavn)+1);
+	serialSend(filnavn, strlen(filnavn)+1);
 
-	recieve(buffer);
+	serialReceive(buffer);
 
     filelenght = atoi(buffer); /* Convert string with bytes to integer */
 
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     fp = fopen(filnavn, "wb");
 
     //------------------------------------------------------------------------------
-    // Print and send file.
+    // Print and serialSend file.
 
     printf("Filesize received %s.\n", buffer);
 
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     while(filelenght > MAXRCVLEN) /* Read and write to file while bytes are 1000 and above */
     {
 
-	recieve(buffer);
+	serialReceive(buffer);
     fwrite(buffer, 1, MAXRCVLEN ,fp); /* Write to file */
 
 	memset(&buffer, 0, sizeof(buffer));
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
     }
 
     // Manage recieving and writing to file when bytes is 1024 and below (Last part of file).
-	recieve(buffer);
+	serialReceive(buffer);
 	fwrite(buffer, 1, MAXRCVLEN, fp);
 
     memset(&buffer, 0, sizeof(buffer));
