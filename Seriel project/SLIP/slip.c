@@ -81,9 +81,6 @@ void sendPackage(char* data, size_t n)
 
 size_t receivePackage(char data[])
 {
-	// Remember case of double FRAME_CHAR in start of new package: FRAME_CHAR --DATA-- FRAME_CHAR FRAME_CHAR --DATA-- FRAME_CHAR
-	// Also remember not to give back FRAME_CHAR´s in start and end
-
 	// Tmp variables
 	int currentChar = 0; // Current char read from buffer('int' because checking for errors[-1])
 	int specialChar = 0; // In case of byte stuffing('int' because checking for errors[-1])
