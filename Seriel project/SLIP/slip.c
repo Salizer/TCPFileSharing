@@ -26,7 +26,7 @@ int SLIPConnect()
 	 * 	Databit: 8 bit
 	 * 	Parity bit generation: Disabled
 	 */
-	params = v24SetParameters(currentConnection,V24_B9600,V24_8BIT,V24_NONE);
+	params = v24SetParameters(currentConnection,V24_B19200,V24_8BIT,V24_NONE);
 	if(params!=V24_E_OK) // Error occured
 	{
 		v24ClosePort(currentConnection);

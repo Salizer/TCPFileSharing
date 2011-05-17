@@ -1,6 +1,5 @@
 #include "CRC-16.h"
 #include "transportlag.h"
-#include "slip.h"
 #include <cstdio> // TMP DELETE AFTER TESTING
 
 
@@ -27,7 +26,7 @@ void send(char * data , int size) // size = der skal sendes
 	{
 		array[i] = data[i-4];
 	}
-	SLIPConnect();
+	//SLIPConnect();
 
 	do
 	{
@@ -40,7 +39,7 @@ void send(char * data , int size) // size = der skal sendes
 
 	}while(!buffer[2] == 1 && buffer[3] == seq);
 
-	SLIPClose();
+	//SLIPClose();
 	seq = !seq;
 
 }
@@ -52,7 +51,7 @@ int recieve(char * data)
 	char crclow;
 	int read = 0;
 
-	SLIPConnect();
+	//SLIPConnect();
 
 	do
 	{
@@ -65,7 +64,7 @@ int recieve(char * data)
         int type = (unsigned char)buffer[2];
         int seq = (unsigned char)buffer[3];
 
-        printf("High: %i\nLow: %i\nType: %i\nSeq: %i\nData: %s", high, low, type, seq, buffer+4);
+        printf("High: %i\nLow: %i\nType: %i\nSeq: %i\nData: %s\n", high, low, type, seq, buffer+4);
 
         crcCalc(buffer+4, read-4, crchigh, crclow);
 
@@ -88,4 +87,15 @@ int recieve(char * data)
 	return(read);
 
 	SLIPClose();
+}
+
+serialConnect(char* port, int baudRate)
+{
+   SLIPConnect(port, baudRate);
+}
+
+serialClose()
+{
+    SLIPClose();
+}
 }

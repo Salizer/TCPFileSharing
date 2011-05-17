@@ -7,18 +7,16 @@ Date: 24/03 -11
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h> // Standard symbolic constants and types
-#include <arpa/inet.h> // Definitions for internet operations
-#include <sys/types.h> // Defines Datatypes.
-#include <netinet/in.h> // Defines Internet address family - TCP etc.
-#include <sys/socket.h> // Defines Internet Protocol family.
+
+#include <ezV24/ezV24.h>
+#include "transportlag.h"
 
 #define MAXRCVLEN 1024
-#define PORTNUM 9000
 
 int main(int argc, char *argv[])
 
 {
+    serialConnect(, );
     //------------------------------------------------------------------
     // Init variabler og stringe.
     char* filnavn = argv[1];
@@ -28,14 +26,14 @@ int main(int argc, char *argv[])
 
 
     //--------------------------------------------------------------------
-    // 
-
+    //
+    filnavn = "miley.jpg";
     printf("Client started:\n");
-	
+
 	send(filnavn, strlen(filnavn)+1);
-	
+
 	recieve(buffer);
-	
+
     filelenght = atoi(buffer); /* Convert string with bytes to integer */
 
     if(filelenght == 0) /* If file is not know by server */
@@ -54,15 +52,15 @@ int main(int argc, char *argv[])
     // Print and send file.
 
     printf("Filesize received %s.\n", buffer);
-	
+
     memset(&buffer, 0, sizeof(buffer)); /* Set memory to 0's */
 
     while(filelenght > MAXRCVLEN) /* Read and write to file while bytes are 1000 and above */
     {
-	
-	recieve(buffer)
+
+	recieve(buffer);
     fwrite(buffer, 1, MAXRCVLEN ,fp); /* Write to file */
-    
+
 	memset(&buffer, 0, sizeof(buffer));
 
     filelenght = filelenght - MAXRCVLEN; /* Calculate remaining bytes */
@@ -72,15 +70,17 @@ int main(int argc, char *argv[])
     // Manage recieving and writing to file when bytes is 1024 and below (Last part of file).
 	recieve(buffer);
 	fwrite(buffer, 1, MAXRCVLEN, fp);
-    
+
     memset(&buffer, 0, sizeof(buffer));
-    
+
 	//-----------------------------------------------------------
-    // 
+    //
 
     printf("End of Program\n");
 
     fclose(fp); /* Close file */
+
+    serialClose();
 
    return EXIT_SUCCESS;
 }

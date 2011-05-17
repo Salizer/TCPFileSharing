@@ -1,5 +1,7 @@
 #ifndef SERVER_H
 #define SERVER_H
+#include "transportlag.h"
+#include <ezV24/ezV24.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,10 +12,10 @@
 class Server
 {
     public:
-  
+
     Server();
-    ~Server(); 
-    void waitForClient(); 
+    ~Server();
+    void waitForClient();
 
     private:
 
