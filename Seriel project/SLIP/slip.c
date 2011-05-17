@@ -10,13 +10,13 @@
 v24_port_t* currentConnection = 0; // Used to keep track of connection
 
 // Implementation of the functions in "slip.h"
-int SLIPConnect()
+int SLIPConnect(char* port, int baudRate)
 {
 	// Tmp variables
 	int params = 0;
 
 	// Open
-	currentConnection = v24OpenPort("/dev/ttyS1",V24_STANDARD);
+	currentConnection = v24OpenPort(port, V24_STANDARD);
 	if(currentConnection == 0) // Error occured
 		return(0);
 
@@ -26,7 +26,7 @@ int SLIPConnect()
 	 * 	Databit: 8 bit
 	 * 	Parity bit generation: Disabled
 	 */
-	params = v24SetParameters(currentConnection,V24_B19200,V24_8BIT,V24_NONE);
+	params = v24SetParameters(currentConnection, baudRate, V24_8BIT, V24_NONE);
 	if(params!=V24_E_OK) // Error occured
 	{
 		v24ClosePort(currentConnection);

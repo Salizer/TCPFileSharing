@@ -9,7 +9,7 @@
  * 				<li> Can send a maximum of DATA_MAX characters at a time
  * 			</ul>
  *	\author NSRD
- * 	\date 29/04 -11
+ * 	\date 17/05 -11
  */
  #include <ezV24/ezV24.h> // Used for serial connection
 
@@ -23,9 +23,9 @@
 // Functions
 /**	\brief Makes connection over "/dev/ttyS1".
 *	\pre Another serial connection is not open.(Remember to close after using this connection)
-* 	\post A connection is made(Returns '1' else '0').
+* 	\post A connection is made(Returns '1' if open else '0') with the settings for port and baud rate(Good idea to use ezV24 enum for values).
 */
-int SLIPConnect();
+int SLIPConnect(char* port, int baudRate);
 
 /**	\brief Closes connection.
 *	\pre A serial connection is open.

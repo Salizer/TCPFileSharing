@@ -1,8 +1,8 @@
 #include "Server.h"
 
-Server::Server()
+Server::Server(char* port, int baudRate)
 {
-    serialConnect( , );
+    serialConnect(port, baudRate);
 }
 Server::~Server()
 {

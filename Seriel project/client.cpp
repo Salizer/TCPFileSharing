@@ -1,7 +1,7 @@
 /*
-Description: Client for TCP file sharing.
-Author: NSR
-Date: 24/03 -11
+	Description: Client for TCP file sharing.
+	Author: NSR
+	Date: 17/05 -11
 */
 
 #include <stdio.h>
@@ -14,9 +14,8 @@ Date: 24/03 -11
 #define MAXRCVLEN 1024
 
 int main(int argc, char *argv[])
-
 {
-    serialConnect(, );
+    serialConnect("/dev/ttyS1", V24_B9600); // VMWare port and 9600 baud rate
     //------------------------------------------------------------------
     // Init variabler og stringe.
     char* filnavn = argv[1];
@@ -80,7 +79,7 @@ int main(int argc, char *argv[])
 
     fclose(fp); /* Close file */
 
-    serialClose();
+    serialClose(); // Close connection
 
    return EXIT_SUCCESS;
 }

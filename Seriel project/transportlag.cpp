@@ -26,7 +26,6 @@ void send(char * data , int size) // size = der skal sendes
 	{
 		array[i] = data[i-4];
 	}
-	//SLIPConnect();
 
 	do
 	{
@@ -39,9 +38,7 @@ void send(char * data , int size) // size = der skal sendes
 
 	}while(!buffer[2] == 1 && buffer[3] == seq);
 
-	//SLIPClose();
 	seq = !seq;
-
 }
 
 int recieve(char * data)
@@ -50,8 +47,6 @@ int recieve(char * data)
 	char crchigh;
 	char crclow;
 	int read = 0;
-
-	//SLIPConnect();
 
 	do
 	{
@@ -97,5 +92,4 @@ serialConnect(char* port, int baudRate)
 serialClose()
 {
     SLIPClose();
-}
 }
