@@ -29,7 +29,7 @@ void serialSend(char * data , int size) // size = der skal sendes
 
 	do
 	{
-	sendPacket(array, size+4);
+	sendPackage(array, size+4);
 
     // NOTICE: ONLY FOR TESTING. REMOVE AFTERWARDS
     printf("Data: %u %u %u %u %s\n", (unsigned char)array[0], (unsigned char)array[1], (unsigned char)array[2], (unsigned char)array[3], array + 4);
@@ -66,13 +66,13 @@ int serialReceive(char * data)
         if(crchigh == buffer[0] && crclow == buffer[1]) // Pakke rigtig
         {
             char ack[] = {0,0,1,buffer[3]};
-            sendPacket(ack, 4);
+            sendPackage(ack, 4);
             break;
         }
         else // Fejl i pakke
         {
             char wrong[] =  {0,0,0,buffer[3]};
-            sendPacket(wrong , 4);
+            sendPackage(wrong , 4);
         }
 	}while(1);
 
@@ -84,12 +84,12 @@ int serialReceive(char * data)
 	SLIPClose();
 }
 
-serialConnect(char* port, int baudRate)
+void serialConnect(char* port, int baudRate)
 {
    SLIPConnect(port, baudRate);
 }
 
-serialClose()
+void serialClose()
 {
     SLIPClose();
 }
