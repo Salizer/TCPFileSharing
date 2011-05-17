@@ -11,7 +11,7 @@
  *	\author NSRD
  * 	\date 17/05 -11
  */
- #include <ezV24/ezV24.h> // Used for serial connection
+#include <ezV24/ezV24.h> // Used for serial connection
 
 // Global constants
 #define DATA_MAX 1050

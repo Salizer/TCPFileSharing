@@ -9,6 +9,7 @@
 // Global variables
 v24_port_t* currentConnection = 0; // Used to keep track of connection
 
+
 // Implementation of the functions in "slip.h"
 int SLIPConnect(char* port, int baudRate)
 {
