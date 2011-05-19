@@ -10,7 +10,6 @@
 // Version        1.0 041200 EGJ - oprindelig version
 //				  1.1 040202 EGJ - flere kommentarer tilføjet
 //				  1.2 181108 NVJ - tilrettet 1. sem. projekt
-// 				  1.3 140511 SLT - tilrettet til LTS
 
 #include "PCµcontroller.h"
 
@@ -186,7 +185,7 @@ bool PCµcontroller::turnLeft()
 	char sendChar = (char)1;
 	PtrLeft->send(&sendChar, 1); // Turn left
 	int read = receive(temp); // receive( char *rxPtr )
-	if(temp <= -90 && 0 <= temp)
+	if(read <= -90 && 0 <= read)
 	return true;
 	else 
 	return false;
@@ -198,7 +197,7 @@ bool PCµcontroller::turnRight()
 	char sendChar = (char)2; // Typecasting
 	PtrRight->send(&sendChar, 1); // Turn right
 	int read = receive(temp);
-	if(temp >= 0 && temp <= 90)
+	if(read >= 0 && read <= 90)
 	return true;
 	else
 	return false;
@@ -210,7 +209,7 @@ bool PCµcontroller::turnDown()
 	char sendChar = (char)3; // Typecasting
 	PtrDown->send(&sendChar, 1); // Turn right
 	int read = receive(temp);
-	if(temp <= 0 && temp >= -60)
+	if(read <= 0 && read >= -60)
 	return true;
 	else
 	return false;
@@ -222,7 +221,7 @@ bool PCµcontroller::turnUp()
 	char sendChar = (char)4; // Typecasting
 	PtrDown->send(&sendChar, 1); // Turn right
 	int read = receive(temp);
-	if(temp <= 60 && temp >= 0)
+	if(read <= 60 && read >= 0)
 	return true;
 	else
 	return false;
@@ -230,14 +229,16 @@ bool PCµcontroller::turnUp()
 
 bool PCµcontroller::seek(int xkor, int ykor)
 {
-	/*char sendChar6 = (char)6; // Skal skrive 0x06 + (x,y)
-	PtrSeek->send(sendChar6, 1);
-	xkor, ykor = 0;
-	string xtext, ytext;
-	stringstream out;
-	out << xkor;
-	out << ykor;
-	xtext = out.str();
-	ytext = out.str();*/
-	return 0;
+	char sendChar = (char)6; // Skal skrive 0x06 + (x,y)
+	PtrSeek->send(&sendChar, 1);
+	toInt(xkor, ykor, c);
+}
+
+void toInt(int &a, int &b, char* c)
+{
+	char* cursor = strtok(c, ",");
+	
+	a = atoi(cursor); // atoi(const char * str)
+	cursor = strtok(NULL, ",");
+	b = atoi(cursor);
 }
