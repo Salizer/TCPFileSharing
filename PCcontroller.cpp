@@ -1,8 +1,8 @@
 // Projekt        Patient overvågning
 //
-// Fil            PCµcontroller.cpp
+// Fil            PCcontroller.cpp
 //
-// Beskrivelse    Implementering af klassen PCµcontroller.
+// Beskrivelse    Implementering af klassen PCcontroller.
 //				  En klasse til serial kommunikation.
 //
 // Forfatter      Erik Gross Jensen
@@ -11,11 +11,11 @@
 //				  1.1 040202 EGJ - flere kommentarer tilføjet
 //				  1.2 181108 NVJ - tilrettet 1. sem. projekt
 
-#include "PCµcontroller.h"
+#include "PCcontroller.h"
 
 
 //*************************************************************************
-bool PCµcontroller::open( int port, int baud )
+bool PCcontroller::open( int port, int baud )
 // Åbner en seriel port for kommunikation. 
 // Input:  port : Comport nummer 1 eller 2
 //         baud : Hastigheden for kommunikationen: 9600, 19200 eller 38400
@@ -24,12 +24,18 @@ bool PCµcontroller::open( int port, int baud )
 //         det ofte at et andet program bruger den serielle port
 //*************************************************************************
 {
-	char portstr[5] = "COM ";
+    //char portstr[5] = "COM ";
+    WCHAR portstr[5]; //= "COM ";
+    portstr[0] = 'C';
+    portstr[1] = 'O';
+    portstr[2] = 'M';
+    portstr[3] = ' ';
+    portstr[4] = '\0';
 
     portstr[3] = 48 + port ; 
 
-
-	HComdev = CreateFile( portstr,  // Navnet på den port der skal åbnes(COMX)
+#warning "Maybe not working"
+        HComdev = CreateFile( portstr,  // Navnet på den port der skal åbnes(COMX)
 						  GENERIC_READ | GENERIC_WRITE,  // read/write types
 						  NULL,
 						  0,
@@ -72,7 +78,7 @@ bool PCµcontroller::open( int port, int baud )
 
 
 //******************************************
-bool PCµcontroller::close()
+bool PCcontroller::close()
 // Lukker forbindelsen
 // Input:
 // Output: true hvis forbindelsen blev lukket ellers false
@@ -86,7 +92,7 @@ bool PCµcontroller::close()
 
 
 //*************************************************
-bool PCµcontroller::send( char *sendPtr, int antal )
+bool PCcontroller::send( char *sendPtr, int antal )
 // Sender et antal karakterer på en seriel port. 
 // Husk porten skal være åben inden send kan bruges
 // Input: *sendPtr : en pointer til den char streng der skal sendes
@@ -106,7 +112,7 @@ bool PCµcontroller::send( char *sendPtr, int antal )
 
 
 //*************************************************
-int PCµcontroller::inWatingBuffer()
+int PCcontroller::inWatingBuffer()
 // Tæller antallet af karakterer der findes i receive buffer
 // Husk porten skal være åben inden send kan bruges
 // Input:
@@ -119,7 +125,7 @@ int PCµcontroller::inWatingBuffer()
 
 
 //*************************************************
-int PCµcontroller::receive( char *rxPtr )
+int PCcontroller::receive( char *rxPtr )
 // Henter de karakterer der findes i receive buffer. Bemærk hvis der 
 // ingen karakterer er i receive buffer vil funktionen først returnere 
 // når der kommer en karakter i  receive bufferen.
@@ -136,7 +142,7 @@ int PCµcontroller::receive( char *rxPtr )
 
 
 //*************************************************
-char PCµcontroller::receiveOneChar()
+char PCcontroller::receiveOneChar()
 // Læser 1 karakter fra receive buffer. Bemærk hvis der ingen karakterer
 // er i receive buffer vil funktionen først returnere, når der kommer en 
 // karakter i receive bufferen.
@@ -153,13 +159,13 @@ char PCµcontroller::receiveOneChar()
 
 //*************************************************
 // Laserfunktionerne samt funktionerne for motorens beveægelser
-// Oprindeligt ikke en del af PCµcontroller-klassen givet i 1. semester
+// Oprindeligt ikke en del af PCcontroller-klassen givet i 1. semester
 //*************************************************
-bool PCµcontroller::laserOn()
+bool PCcontroller::laserOn()
 {
 	char tmp;
 	char sendChar = (char)5; // Sendchar(1)
-	PtrOn->send(&sendChar, 1); // Sendchar(1)
+        send(&sendChar, 1); // Sendchar(1)
 	tmp = receiveOneChar(); // modtag char og gem
 	if(tmp == 1) // hvis tmp == 1, return true, else false
 	return true;
@@ -167,11 +173,11 @@ bool PCµcontroller::laserOn()
 	return false;
 }
 
-bool PCµcontroller::laserOff()
+bool PCcontroller::laserOff()
 {
 	char temp;
 	char sendChar = (char)5;
-	PtrOff->send(&sendChar, 1); // 
+        send(&sendChar, 1); //
 	temp = receiveOneChar();
 	if(temp == 0)
 	return true;
@@ -179,11 +185,11 @@ bool PCµcontroller::laserOff()
 	return false;
 }
 
-bool PCµcontroller::turnLeft()
+bool PCcontroller::turnLeft()
 {
 	char temp[7]; // skal sende koordinater med komma
 	char sendChar = (char)1;
-	PtrLeft->send(&sendChar, 1); // Turn left
+        send(&sendChar, 1); // Turn left
 	int read = receive(temp); // receive( char *rxPtr )
 	if(read <= -90 && 0 <= read)
 	return true;
@@ -191,11 +197,11 @@ bool PCµcontroller::turnLeft()
 	return false;
 }
 
-bool PCµcontroller::turnRight()
+bool PCcontroller::turnRight()
 {
 	char temp[7];
 	char sendChar = (char)2; // Typecasting
-	PtrRight->send(&sendChar, 1); // Turn right
+        send(&sendChar, 1); // Turn right
 	int read = receive(temp);
 	if(read >= 0 && read <= 90)
 	return true;
@@ -203,11 +209,11 @@ bool PCµcontroller::turnRight()
 	return false;
 }
 
-bool PCµcontroller::turnDown()
+bool PCcontroller::turnDown()
 {
 	char temp[7];
 	char sendChar = (char)3; // Typecasting
-	PtrDown->send(&sendChar, 1); // Turn right
+        send(&sendChar, 1); // Turn right
 	int read = receive(temp);
 	if(read <= 0 && read >= -60)
 	return true;
@@ -215,11 +221,11 @@ bool PCµcontroller::turnDown()
 	return false;
 }
 
-bool PCµcontroller::turnUp()
+bool PCcontroller::turnUp()
 {
 	char temp[7]; // for hhv -xx,-yy
 	char sendChar = (char)4; // Typecasting
-	PtrDown->send(&sendChar, 1); // Turn right
+        send(&sendChar, 1); // Turn right
 	int read = receive(temp);
 	if(read <= 60 && read >= 0)
 	return true;
@@ -227,11 +233,12 @@ bool PCµcontroller::turnUp()
 	return false;
 }
 
-bool PCµcontroller::seek(int xkor, int ykor)
+bool PCcontroller::seek(int xkor, int ykor)
 {
 	char sendChar = (char)6; // Skal skrive 0x06 + (x,y)
-	PtrSeek->send(&sendChar, 1);
-	toInt(xkor, ykor, c);
+        send(&sendChar, 1);
+        //toInt(xkor, ykor, c);
+        return(true); // Remove afterwards
 }
 
 void toInt(int &a, int &b, char* c)

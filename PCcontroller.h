@@ -1,8 +1,8 @@
 // Projekt        Patient overvågning
 //
-// Fil            PCµcontroller.h
+// Fil            PCcontroller.h
 //
-// Beskrivelse    Interface til klassen PCµcontroller.
+// Beskrivelse    Interface til klassen PCcontroller.
 //				  En klasse til serial kommunikation.
 //
 // Forfatter      Erik Gross Jensen
@@ -16,7 +16,7 @@
 #include <iostream>
 using namespace std;
 
-class PCµcontroller
+class PCcontroller
 {
 public:
 	bool open( int port, int baud );
@@ -37,11 +37,4 @@ private:
 	DWORD dwErrorFlags; 
 	COMSTAT ComStat;
 	DCB dcb;						//Def af variabel til DCB structen
-	PCµcontroller * PtrOn;
-	PCµcontroller * PtrOff;
-	PCµcontroller * PtrLeft; 
-	PCµcontroller * PtrRight;
-	PCµcontroller * PtrDown;
-	PCµcontroller * PtrUp;
-	PCµcontroller * PtrSeek;
 };
