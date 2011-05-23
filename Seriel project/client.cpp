@@ -1,5 +1,5 @@
 /*
-	Description: Client for TCP file sharing.
+	Description: Client for serial file sharing.
 	Author: NSR
 	Date: 17/05 -11
 */
