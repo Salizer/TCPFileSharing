@@ -2,13 +2,12 @@
 #include "transportlag.h"
 #include <cstdio> // TMP DELETE AFTER TESTING
 
-
-
-////////////////////////Husk at indsætte begrænsninger//
-
-
-void serialSend(char * data , int size) // size = der skal sendes
+void serialSend(char * data , int size) // size = størrelse af hvad der skal sendes
 {
+	// Size checking
+	if(size > MAX_DATA_LENGTH)
+		size = MAX_DATA_LENGTH;
+
 	static char seq = 0;
 	char crchigh;
 	char crclow;

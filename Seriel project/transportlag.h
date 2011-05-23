@@ -7,6 +7,8 @@
 */
 #include "slip.h"
 
+#define MAX_DATA_LENGTH = 1024; // Max amount of data able to send(If trying to send larger amount then it only sends this amount of bytes)
+
 void serialSend(char * data , int size/* size = der skal sendes */);
 int serialReceive(char * data);
 void serialConnect(char* port, int baudRate);
