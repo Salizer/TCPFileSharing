@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="CRC-16.cpp" open="0" top="0" tabpos="5">
+	<File name="CRC-16.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="441" topLine="0" />
 	</File>
-	<File name="CRC-16.h" open="0" top="0" tabpos="0">
+	<File name="CRC-16.h" open="1" top="0" tabpos="6">
 		<Cursor position="53" topLine="0" />
 	</File>
-	<File name="client.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="102" topLine="0" />
+	<File name="client.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="93" topLine="0" />
 	</File>
-	<File name="slip.c" open="0" top="0" tabpos="4">
-		<Cursor position="15" topLine="0" />
+	<File name="slip.c" open="1" top="1" tabpos="3">
+		<Cursor position="89" topLine="0" />
 	</File>
-	<File name="transportlag.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="21" topLine="0" />
+	<File name="slip.h" open="1" top="0" tabpos="5">
+		<Cursor position="215" topLine="0" />
 	</File>
-	<File name="transportlag.h" open="0" top="0" tabpos="3">
-		<Cursor position="69" topLine="0" />
+	<File name="transportlag.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="149" topLine="0" />
+	</File>
+	<File name="transportlag.h" open="1" top="0" tabpos="7">
+		<Cursor position="191" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

@@ -1,7 +1,7 @@
 // File: transportlag.cpp
 /*
 	Description: Transportlag for serial file sharing.
-	Author: NSR
+	Author: NSRD
 	Date: 24/05 -11
 */
 

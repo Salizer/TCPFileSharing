@@ -1,8 +1,8 @@
 // File: client.cpp
 /*
 	Description: Client for serial file sharing.
-	Author: NSR
-	Date: 17/05 -11
+	Author: NSRD
+	Date: 24/05 -11
 */
 
 #include <stdio.h>  // file function etc.
@@ -55,13 +55,13 @@ int main(int argc, char *argv[])
 
     while(filelenght > MAXRCVLEN) /* Recieve and write to file while bytes are 1024 and above */
     {
-	serialReceive(buffer); // Recieve more data
+        serialReceive(buffer); // Recieve more data
 
-    fwrite(buffer, 1, MAXRCVLEN ,fp); /* Write to file */
+        fwrite(buffer, 1, MAXRCVLEN ,fp); /* Write to file */
 
-	memset(&buffer, 0, sizeof(buffer));
+        memset(&buffer, 0, sizeof(buffer));
 
-    filelenght = filelenght - MAXRCVLEN; /* Calculate remaining bytes */
+        filelenght = filelenght - MAXRCVLEN; /* Calculate remaining bytes */
 
     }
 
