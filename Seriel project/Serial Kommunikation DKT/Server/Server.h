@@ -1,5 +1,6 @@
 #ifndef SERVER_H
 #define SERVER_H
+// File: Server.h
 /*
 	Description: Server class for file transfer over serial connection.
 	Author: NSRD
