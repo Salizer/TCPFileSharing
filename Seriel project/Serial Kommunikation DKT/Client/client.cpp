@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 
     // Manage recieving and writing to file when bytes is 1024 and below (Last part of file).
 	serialReceive(buffer);
-	fwrite(buffer, 1, MAXRCVLEN, fp);
+	fwrite(buffer, 1, filelenght, fp);
 
     memset(&buffer, 0, sizeof(buffer));
 
