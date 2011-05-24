@@ -1,3 +1,9 @@
+// File: slip.c
+/*
+	Description: Implements 'slip.h' functions for serial communication.
+	Author: NSRD
+	Date: 24/05 -11
+*/
 #include "slip.h"
 
 // Global defines
