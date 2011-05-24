@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1306139938 source:/root/Skrivebord/Client/Client/CRC-16.cpp
+	"CRC-16.h"
+
+1306139938 /root/Skrivebord/Client/Client/CRC-16.h
+
+1306172337 source:/root/Skrivebord/Client/Client/client.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"transportlag.h"
+
+1306139938 /root/Skrivebord/Client/Client/transportlag.h
+	"slip.h"
+
+1306139938 /root/Skrivebord/Client/Client/slip.h
+	<ezV24/ezV24.h>
+
+1306139938 source:/root/Skrivebord/Client/Client/slip.c
+	"slip.h"
+
+1306171827 source:/root/Skrivebord/Client/Client/transportlag.cpp
+	"CRC-16.h"
+	"transportlag.h"
+	<cstdio>
+

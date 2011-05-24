@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1306139938 source:/root/Desktop/Server/Server/CRC-16.cpp
+	"CRC-16.h"
+
+1306139938 /root/Desktop/Server/Server/CRC-16.h
+
+1306217429 source:/root/Desktop/Server/Server/Server.cpp
+	"Server.h"
+
+1306174529 /root/Desktop/Server/Server/Server.h
+	"transportlag.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1306139938 /root/Desktop/Server/Server/transportlag.h
+	"slip.h"
+
+1306139938 /root/Desktop/Server/Server/slip.h
+	<ezV24/ezV24.h>
+
+1306217353 source:/root/Desktop/Server/Server/ServerMain.cpp
+	"Server.h"
+
+1306139938 source:/root/Desktop/Server/Server/slip.c
+	"slip.h"
+
+1306171826 source:/root/Desktop/Server/Server/transportlag.cpp
+	"CRC-16.h"
+	"transportlag.h"
+	<cstdio>
+
