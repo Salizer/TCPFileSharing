@@ -1,6 +1,7 @@
+// File: transportlag.cpp
 /*
 	Description: Transportlag for serial file sharing.
-	Author: NSR
+	Author: NSRD
 	Date: 24/05 -11
 */
 
@@ -14,7 +15,7 @@ void serialSend(char * data , int size) // size = der skal sendes
 	// Size checking
 	if(size > MAX_DATA_LENGTH)
 		size = MAX_DATA_LENGTH;
-		
+
     // Initiate used variables etc.
 	static char seq = 0;
 	char crchigh;
