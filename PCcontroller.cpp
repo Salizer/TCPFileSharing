@@ -12,30 +12,26 @@
 //				  1.2 181108 NVJ - tilrettet 1. sem. projekt
 
 #include "PCcontroller.h"
+#include <cstring>
+#include <stdlib.h>
 
 
 //*************************************************************************
 bool PCcontroller::open( int port, int baud )
 // Åbner en seriel port for kommunikation. 
-// Input:  port : Comport nummer 1 eller 2
+// Input:  port : Comport nummer 1,2,3,4 eller 5
 //         baud : Hastigheden for kommunikationen: 9600, 19200 eller 38400
 // Output: true hvis porten kunne åbnes
 //		   false hvis porten ikke kunne åbnes. Når der returneres false skyldes
 //         det ofte at et andet program bruger den serielle port
 //*************************************************************************
 {
-    //char portstr[5] = "COM ";
-    WCHAR portstr[5]; //= "COM ";
-    portstr[0] = 'C';
-    portstr[1] = 'O';
-    portstr[2] = 'M';
-    portstr[3] = ' ';
-    portstr[4] = '\0';
+	char portstr[5] = "COM ";
 
     portstr[3] = 48 + port ; 
 
-#warning "Maybe not working"
-        HComdev = CreateFile( portstr,  // Navnet på den port der skal åbnes(COMX)
+
+	HComdev = CreateFile( portstr,  // Navnet på den port der skal åbnes(COMX)
 						  GENERIC_READ | GENERIC_WRITE,  // read/write types
 						  NULL,
 						  0,
@@ -164,8 +160,8 @@ char PCcontroller::receiveOneChar()
 bool PCcontroller::laserOn()
 {
 	char tmp;
-	char sendChar = (char)5; // Sendchar(1)
-        send(&sendChar, 1); // Sendchar(1)
+	char sendChar = '5'; // Sendchar(1)
+	send(&sendChar, 1); // sender en charværdi
 	tmp = receiveOneChar(); // modtag char og gem
 	if(tmp == 1) // hvis tmp == 1, return true, else false
 	return true;
@@ -176,8 +172,8 @@ bool PCcontroller::laserOn()
 bool PCcontroller::laserOff()
 {
 	char temp;
-	char sendChar = (char)5;
-        send(&sendChar, 1); //
+	char sendChar = '5';
+	send(&sendChar, 1); // 
 	temp = receiveOneChar();
 	if(temp == 0)
 	return true;
@@ -187,65 +183,83 @@ bool PCcontroller::laserOff()
 
 bool PCcontroller::turnLeft()
 {
-	char temp[7]; // skal sende koordinater med komma
-	char sendChar = (char)1;
-        send(&sendChar, 1); // Turn left
-	int read = receive(temp); // receive( char *rxPtr )
-	if(read <= -90 && 0 <= read)
+	char lol = '1';
+	if(lol == '1')
+	send(&lol, 1);
 	return true;
-	else 
-	return false;
 }
 
 bool PCcontroller::turnRight()
 {
-	char temp[7];
-	char sendChar = (char)2; // Typecasting
-        send(&sendChar, 1); // Turn right
-	int read = receive(temp);
-	if(read >= 0 && read <= 90)
+	char lol = '2';
+	if(lol == '2')
+	send(&lol, 1);
 	return true;
-	else
-	return false;
 }
 
 bool PCcontroller::turnDown()
 {
-	char temp[7];
-	char sendChar = (char)3; // Typecasting
-        send(&sendChar, 1); // Turn right
-	int read = receive(temp);
-	if(read <= 0 && read >= -60)
+	char sendChar = '3';
+	if(sendChar == '3')
+	send(&sendChar, 1); // Turn right
 	return true;
-	else
-	return false;
 }
 
 bool PCcontroller::turnUp()
 {
-	char temp[7]; // for hhv -xx,-yy
-	char sendChar = (char)4; // Typecasting
-        send(&sendChar, 1); // Turn right
-	int read = receive(temp);
-	if(read <= 60 && read >= 0)
+	char sendChar = '4';
+	if(sendChar == '4')
+	send(&sendChar, 1); // Turn right
 	return true;
-	else
-	return false;
 }
 
 bool PCcontroller::seek(int xkor, int ykor)
-{
-	char sendChar = (char)6; // Skal skrive 0x06 + (x,y)
-        send(&sendChar, 1);
-        //toInt(xkor, ykor, c);
-        return(true); // Remove afterwards
-}
-
-void toInt(int &a, int &b, char* c)
-{
-	char* cursor = strtok(c, ",");
+{	
+	int const size = 5; // size for sending coordinates with null-termination
+	char sendChar = '6'; 
+	char x[size];
+	char y[size];
+	send(&sendChar, 1); // Send besked om anmodning
+	itoa(xkor, x, 10); // Send koordinater vha. itoa(int value, char * str, int base);
+	itoa(ykor, y, 10); // Send koordinater vha. itoa(int value, char * str, int base);
 	
-	a = atoi(cursor); // atoi(const char * str)
-	cursor = strtok(NULL, ",");
-	b = atoi(cursor);
+	int xlenght = (size-1)-strlen(x);
+	int ylenght = (size-1)-strlen(y);
+
+	x[size-1] = '\0';
+	for(int i = 0; i < xlenght; i++)
+	{
+		for(int j = strlen(x); j > 0; j--)
+		{
+		x[j] = x[j-1];
+		}
+	x[0] = '0';
+	}
+
+	y[size-1] = '\0';
+	for(int h = 0; h < ylenght; h++)
+	{
+		for(int g = strlen(y); g > 0; g--)
+		{
+		y[g] = y[g-1];
+		}
+	y[0] = '0';
+	}
+	
+	// test
+	if(x[0] == '+')
+		x[0] = '1';
+	else
+		x[0] = '0';
+	
+	if(y[0] == '+')
+		y[0] = '1';
+	else
+		y[0] = '0';
+
+	send(x, size-1); // minus 1??
+	send(y, size-1);
+	while(!receiveOneChar() == '1');
+	
+	return true;
 }

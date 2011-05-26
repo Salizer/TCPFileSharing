@@ -32,6 +32,7 @@ public:
 	bool turnDown();
 	bool turnUp();
 	bool seek(int x, int y);
+	void toInt(int &a, char* c);
 private:
 	HANDLE HComdev;					//Def af handle til pc
 	DWORD dwErrorFlags; 
