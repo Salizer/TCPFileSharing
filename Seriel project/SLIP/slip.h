@@ -21,7 +21,7 @@
 #endif
 
 // Functions
-/**	\brief Makes connection over "/dev/ttyS1".
+/**	\brief Makes connection over chosen port with chosen baudRate.
 *	\pre Another serial connection is not open.(Remember to close after using this connection)
 * 	\post A connection is made(Returns '1' if open else '0') with the settings for port and baud rate(Good idea to use ezV24 enum for values).
 */

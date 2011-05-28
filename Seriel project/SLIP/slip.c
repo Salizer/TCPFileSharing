@@ -23,7 +23,7 @@ int SLIPConnect(char* port, int baudRate)
 
 	// Settings
 	/*
-	 *	Baud rate: 9600
+	 *	Baud rate: 'baudRate'
 	 * 	Databit: 8 bit
 	 * 	Parity bit generation: Disabled
 	 */
